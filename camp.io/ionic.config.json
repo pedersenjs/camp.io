@@ -1,0 +1,7 @@
+{
+  "name": "camp.io",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
