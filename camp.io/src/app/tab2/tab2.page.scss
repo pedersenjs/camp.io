@@ -1,0 +1,19 @@
+ion-content {
+    --background: url('forestbackground.jpg') no-repeat center center/ cover;
+  }
+  
+  mark {
+    background-color: white;
+    color: black;
+  }
+  #wrapper {
+    width: 1000px;
+    // border: 1px solid black;
+    // display: flex;
+    overflow: auto; /* add this to contain floated children */
+}
+  #location {
+    width: 300px;
+    // float:right; /* add this */
+    // border: 1px solid red;
+  }

@@ -1,17 +1,35 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Camp.io
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" padding class="background">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Camp.io</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <h1 style="text-align:center">
+    <mark>Welcome to Camp.io</mark>
+  </h1>
+  <div id="wrapper">
+
+  <iframe width="600" height="600"
+          style="border:0"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCs3-gQD4LbdSeCbJA31e9t3vjLeVW15Tk&q=Yellowstone+National+Park+WY"
+          allowfullscreen>
+  </iframe>
+  <form>
+    <mark><label for="location">Location:</label></mark><br>
+    <input type="text" id="location" name="location"><br>
+  </form>
+
+  </div>
 </ion-content>
+
+
