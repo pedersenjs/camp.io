@@ -1,10 +1,12 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header [translucent]="true">
+  <!-- <ion-toolbar>
     <ion-title>
       Camp.io
     </ion-title>
-  </ion-toolbar>
-</ion-header> -->
+  </ion-toolbar> -->
+  <link rel="stylesheet" href="/path/to/leaflet.css" />
+  <script src="/path/to/leaflet.js"></script>
+</ion-header>
 
 <ion-content [fullscreen]="true" padding class="background">
   <ion-header collapse="condense">
@@ -17,12 +19,25 @@
     <mark>Welcome to Camp.io</mark>
   </h1>
 
-  <iframe width="600" height="600"
+  <html>
+    <div id="map" style="width:900px; height:580px;"></div>
+    <script>
+      var map = L.map('map').setView([51.505, -0.09], 13);
+
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      L.marker([51.5, -0.09]).addTo(map)
+        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+        .openPopup();
+    </script>
+  </html>
+  <!-- <iframe width="600" height="600"
           style="border:0"
           referrerpolicy="no-referrer-when-downgrade"
           src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCs3-gQD4LbdSeCbJA31e9t3vjLeVW15Tk&q=Yellowstone+National+Park+WY"
           allowfullscreen>
-  </iframe>
+  </iframe> -->
+
 </ion-content>
-
-
