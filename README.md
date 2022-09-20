@@ -33,3 +33,9 @@ mark {
 }
 ```
 This let us add a background image, as well as the format for highlighting the title of our website. 
+
+
+# Feature 2- Embedding a map into the website
+![image](https://user-images.githubusercontent.com/89262517/191142558-4450f382-b8a1-4340-bbdd-96ad6b572ed0.png)
+###### Image of how the website looks after originally implementing this feature
+This proved to be harder for us than we thought. We first wrote 
