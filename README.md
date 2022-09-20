@@ -50,7 +50,21 @@ This week was full of a lot of troubleshooting. Above is a screenshot of an erro
 This code led us to have a working embedded map, as shown below. 
 ![image](https://user-images.githubusercontent.com/89262517/191142558-4450f382-b8a1-4340-bbdd-96ad6b572ed0.png)
 ###### Image of how the website looks after originally implementing this feature
-Once we had our map, we were very excited to begin adding locations. This feature was way easier to implement than we expected- or so we thought. After another hour of searching and looking around, we realized that Google does not currently have functionality to display multiple locations of our choosing on the map at once. Because of this, we went and began searching for new libraries that would help us embed a map into our website. We looked at this website (https://wiki.openstreetmap.org/wiki/Software_libraries#Web_maps) whick had a large list of libraries to pick from. We examined a few and decided on using Leaflet/ openstreet map. 
+Once we had this map, we added the other tabs back into the website as shown below. ![image](https://user-images.githubusercontent.com/89262517/191325352-0437e6d4-8134-4790-bfe7-bbd0acaa8eda.png) 
+###### Image of all three tabs on our website
+We then focused on the tab to add a location. We added in a form to input a location, using the code shown below.
+```
+  <form>
+    <mark><label for="location">Location:</label></mark><br>
+    <input type="text" id="location" name="location"><br>
+  </form>
+ ```
+ ![image](https://user-images.githubusercontent.com/89262517/191326359-6955fb1f-39d5-4497-b6cd-cd719b90234c.png)
+###### Image of the Add Location form, with the location Boone filled in
+It currently does not do anything, but it lays the framework for our third feature. We also updated the map embedded on the page to display a cluster of campsites located near Boone, to provide an example of how we hope our map to look.
+![image](https://user-images.githubusercontent.com/89262517/191325914-1aa47cbb-f8a3-493c-bb7f-e5cce01da53d.png)
+###### Image of the new map on the Add Location tab
+Once we had our map, we were very excited to begin adding locations. The map feature was way easier to implement than we expected- or so we thought. After another hour of searching and looking around, we realized that Google does not currently have functionality to display multiple locations of our choosing on the map at once. Because of this, we went and began searching for new libraries that would help us embed a map into our website. We looked at this website (https://wiki.openstreetmap.org/wiki/Software_libraries#Web_maps) whick had a large list of libraries to pick from. We examined a few and decided on using Leaflet/ openstreet map. 
 We found a few tutorials on how to implement the leaflet.js library and began working with them. 
 We added the code below to our tab 1, as well as installed leaflet files onto our project folder. 
 ```
