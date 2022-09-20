@@ -33,3 +33,40 @@ mark {
 }
 ```
 This let us add a background image, as well as the format for highlighting the title of our website. 
+
+
+# Feature 2- Embedding a map into the website
+![image](https://user-images.githubusercontent.com/89262517/191318480-6b65dede-db40-452a-8002-a429a00329e2.png)
+###### Image of one of the error messages we ran into along the way
+This week was full of a lot of troubleshooting. Above is a screenshot of an error that took a couple hours of our time to figure out. We had a good guess about what was causing the error based off the error message, but it involved us having to mess with settings on our google developer account and sign up for an API license. We also had to reformat the URL that we were using in our code, to include the proper API key like so:
+```
+<iframe width="600" height="600"
+          style="border:0"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCs3-gQD4LbdSeCbJA31e9t3vjLeVW15Tk&q=Yellowstone+National+Park+WY"
+          allowfullscreen>
+  </iframe>
+```
+This code led us to have a working embedded map, as shown below. 
+![image](https://user-images.githubusercontent.com/89262517/191142558-4450f382-b8a1-4340-bbdd-96ad6b572ed0.png)
+###### Image of how the website looks after originally implementing this feature
+Once we had our map, we were very excited to begin adding locations. This feature was way easier to implement than we expected- or so we thought. After another hour of searching and looking around, we realized that Google does not currently have functionality to display multiple locations of our choosing on the map at once. Because of this, we went and began searching for new libraries that would help us embed a map into our website. We looked at this website (https://wiki.openstreetmap.org/wiki/Software_libraries#Web_maps) whick had a large list of libraries to pick from. We examined a few and decided on using Leaflet/ openstreet map. 
+We found a few tutorials on how to implement the leaflet.js library and began working with them. 
+We added the code below to our tab 1, as well as installed leaflet files onto our project folder. 
+```
+  <html>
+    <div id="map" style="width:900px; height:580px;"></div>
+    <script>
+      var map = L.map('map').setView([51.505, -0.09], 13);
+
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      L.marker([51.5, -0.09]).addTo(map)
+        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+        .openPopup();
+    </script>
+  </html>
+```
+We then ran our code and.... no map is being displayed. We have spent a lot of time troubleshooting this issue and are not currently sure how to fix it. 
