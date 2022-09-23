@@ -4,40 +4,22 @@
       Camp.io
     </ion-title>
   </ion-toolbar>
-  <link rel="stylesheet" href="/path/to/leaflet.css" />
-  <script src="/path/to/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+  integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+  integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+  crossorigin=""></script>
+</ion-header>
+
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title size="large">
+      Camp.io
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" padding class="background">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Camp.io</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <!-- <h1 style="text-align:center">
-    <mark>Welcome to Camp.io</mark>
-  </h1> -->
-
-  <html>
-    <div id="map" style="width:900px; height:580px;"></div>
-    <script>
-      var map = L.map('map').setView([51.505, -0.09], 13);
-
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-
-      L.marker([51.5, -0.09]).addTo(map)
-        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-        .openPopup();
-    </script>
-  </html>
-  <!-- <iframe width="600" height="600"
-          style="border:0"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCs3-gQD4LbdSeCbJA31e9t3vjLeVW15Tk&q=Yellowstone+National+Park+WY"
-          allowfullscreen>
-  </iframe> -->
-
+  <div id="map"></div>
 </ion-content>
