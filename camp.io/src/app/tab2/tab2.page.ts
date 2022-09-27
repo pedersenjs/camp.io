@@ -8,8 +8,15 @@ import * as L from "leaflet"
 
 export class Tab2Page {
   map2: L.Map
-
+  inputValue = "";
   constructor() {}
+
+  //https://stackoverflow.com/questions/47529327/angular-4-get-input-value
+  onKey(event) {
+    this.inputValue += event.target.value;
+    // console.log(inputValue);
+
+  }
 
   ngOnInit() {
     this.map2 = L.map('map2', {

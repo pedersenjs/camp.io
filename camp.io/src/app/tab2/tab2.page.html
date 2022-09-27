@@ -16,7 +16,7 @@
   <div id="map2"></div>
   <form>
     <mark><label for="location">Location:</label></mark><br>
-    <input type="text" id="location" name="location"><br>
+    <input (keyup)="onKey($event)"><br>
   </form>
 </ion-content>
 
