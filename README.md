@@ -85,3 +85,71 @@ We added the code below to our tab 1, as well as installed leaflet files onto ou
   </html>
 ```
 We then ran our code and.... no map is being displayed. We have spent a lot of time troubleshooting this issue and are not currently sure how to fix it. 
+
+## Feature 2 Part 2- Embedding a map into the website
+![image](https://user-images.githubusercontent.com/89262517/192602383-5467bb65-15a2-448f-a7a3-0232fb6dd4f7.png)
+###### Website with the working embedded map
+Progressing from where we ended last week, trying to implement the Leaflet javascript library for OpenStreetMaps on the site, we started by adding a map object onto the html page for tab 1. This required linking the javascript and css files in the ionic header and adding a div with the id of map in the ionic content body.
+```
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Camp.io
+    </ion-title>
+  </ion-toolbar>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+  crossorigin=""></script>
+</ion-header>
+<ion-content [fullscreen]="true" padding class="background">
+  <div id="map"></div>
+</ion-content>
+```
+This will create an html div object on the page, but it will not display until the javascript code is implemented in the tab 1 typescript file. This will require that all leaflet packages are imported as an object which can then be called to create a map object, give it custom options like center and zoom, add markers, and specify how the map tiles are rendered. 
+```
+import * as L from "leaflet"
+export class Tab1Page {
+  map: L.Map
+  constructor() {}
+  ngOnInit() {
+    this.map = L.map('map', {
+      center: [ 36.21272,-81.67292 ],
+      zoom: 13,
+      renderer: L.canvas()
+    })
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap',
+    }).addTo(this.map)
+    L.marker([36.21272,-81.67292]).addTo(this.map)
+    .bindPopup('Appalachian State University: <br> Elevation 3,333 ft')
+    L.marker([36.230833,-81.676111]).addTo(this.map)
+    .bindPopup('Howard\'s Knob: <br> Elevation 4,396 ft')
+    setTimeout(() => {
+      this.map.invalidateSize();
+    }, 0);
+  }
+}
+```
+For the purposes of our project and demonstrating the initial map implementation we added two markers at the coordinates for Appalachian State University and Howard’s Knob. The map was centered in Boone and shows both markers in the view on initialization.
+Clicking on the markers will show a popup box detailing the title of the place and the elevation. These are just placeholder values for now, but show that we can customize the boxes to detail even more information about a coordinate spot, which will be very useful for campsite details.
+Importantly, css styling for the map objects created can be provided in the scss file for tab 1, for which we gave a simple height percentage to show the background, but can also be manipulated to have other stylings.
+```
+#map {
+  min-height: 80%;
+}
+```
+Local styling is done on each respective page’s scss file, but the global scss file for the application MUST have an import statement for Leaflet in order for the stylings to work properly.
+```
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import "~leaflet/dist/leaflet.css"
+```
+Link to Leaflet JavaScript library for embedding Openstreetmaps:
+https://leafletjs.com/ 
