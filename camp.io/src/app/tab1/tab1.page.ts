@@ -14,8 +14,8 @@ export class Tab1Page {
 
   ngOnInit() {
     this.map = L.map('map', {
-      center: [ 25.3791924,55.4765436 ],
-      zoom: 15,
+      center: [ 36.21272,-81.67292 ],
+      zoom: 13,
       renderer: L.canvas()
     })
 
@@ -23,6 +23,8 @@ export class Tab1Page {
       attribution: '© OpenStreetMap',
     }).addTo(this.map)
 
+    L.marker([36.21272,-81.67292]).addTo(this.map)
+    .bindPopup('Appalachian State University')
 
     setTimeout(() => {
       this.map.invalidateSize();
