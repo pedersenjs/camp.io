@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" collapse="fade">
   <ion-toolbar>
     <ion-title>
       Camp.io
@@ -10,8 +10,17 @@
   <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
   integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
   crossorigin=""></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 </ion-header>
 
 <ion-content [fullscreen]="true" padding class="background">
   <div id="map"></div>
+  <p>Our community provides the best free camping information available. Free campgrounds can be hard to find. Freecampsites.net makes it easy. We give you a simple, map based search engine to find free and cheap camping areas. Community reviews and ratings provide you with up to date information and help you select the best camp site for your next camping trip.
+
+    This is a platform for sharing campgrounds and camp sites you have discovered. We are community driven, and while we will be adding many free camping spots, we hope that you will add some of your favorite camping places as well. By sharing camping information freely, we can all spend less time researching campgrounds, spend less money, and more time camping. If everyone contributes a few campsites, we'll all have more places to go camping.
+    Please come back and let us know what you find! User reviews help other campers decide on their next camping destination. The more information you have, the more informed your decisions.
+
+    Whether you enjoy tent camping, car camping or RV camping, our goal is to help you find the best places to go camping. We believe that free camping areas are often the most beautiful and peaceful camp sites. Our focus is on public lands. You own these lands and you are entitled to use them. We especially like camping on Forest Service land, BLM (Bureau of Land Management) areas, WMA's (Wildlife Management Areas) and county or city parks. We hope you enjoy the same style of camping. </p>
 </ion-content>
