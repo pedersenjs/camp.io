@@ -24,7 +24,10 @@ export class Tab1Page {
     }).addTo(this.map)
 
     L.marker([36.21272,-81.67292]).addTo(this.map)
-    .bindPopup('Appalachian State University')
+    .bindPopup('Appalachian State University: <br> Elevation 3,333 ft')
+
+    L.marker([36.230833,-81.676111]).addTo(this.map)
+    .bindPopup('Howard\'s Knob: <br> Elevation 4,396 ft')
 
     setTimeout(() => {
       this.map.invalidateSize();
