@@ -12,7 +12,7 @@ export class Tab2Page {
   constructor() {}
 
   ngOnInit() {
-    this.map2 = L.map('map', {
+    this.map2 = L.map('map2', {
       center: [ 36.21272,-81.67292 ],
       zoom: 13,
       renderer: L.canvas()
