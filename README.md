@@ -44,7 +44,7 @@ This week was full of a lot of troubleshooting as we worked on embedding a map u
 <iframe width="600" height="600"
           style="border:0"
           referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCs3-gQD4LbdSeCbJA31e9t3vjLeVW15Tk&q=Yellowstone+National+Park+WY"
+          src="https://www.google.com/maps/embed/v1/place?key=[API KEY]&q=Yellowstone+National+Park+WY"
           allowfullscreen>
   </iframe>
 ```
