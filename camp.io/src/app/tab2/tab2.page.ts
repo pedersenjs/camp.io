@@ -12,6 +12,7 @@ export class Tab2Page {
   map2: L.Map
   xinputValue = 0;
   yinputValue = 0;
+  locationname = "user input";
   constructor() {}
 
   //https://stackoverflow.com/questions/47529327/angular-4-get-input-value
@@ -31,9 +32,13 @@ export class Tab2Page {
     this.yinputValue = form.value["y-coordinate"];
     // console.log(this.yinputValue);
     console.log(this.yinputValue);
+    this.locationname = form.value.name;
+    // if (this.locationname == ""){
+    //   this.locationname = "user input";
+    // }
 
     L.marker([this.xinputValue,this.yinputValue]).addTo(this.map2)
-    .bindPopup('User Input')//36.230833,-81.676111
+    .bindPopup(this.locationname)//36.230833,-81.676111
   }
 
   ngOnInit() {

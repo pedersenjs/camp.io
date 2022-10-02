@@ -15,10 +15,13 @@
 <ion-content [fullscreen]="true" padding class="background">
   <div id="map2"></div>
   <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)">
-    <mark><label for="location">x-coordinate:</label></mark><br>
+    <mark><label for="location">X-coordinate:</label></mark>
     <input type="text" name="x-coordinate" id="x-coordinate" ngModel><br>
-    <mark><label for="location">y-coordinate:</label></mark><br>
+    <mark><label for="location">Y-coordinate:</label></mark>
     <input type="text" name="y-coordinate" id="coordinate" ngModel><br>
+    <mark><label for="name">Name:</label></mark>
+    <input type="text" name="name" id="coordinate" ngModel><br>
+
     <button type="submit">Add Location</button>
   </form>
 </ion-content>
