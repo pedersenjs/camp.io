@@ -24,11 +24,11 @@ export class Tab2Page {
   }
 
   //Add new marker
-  //Took a lot of inspiration from this link https://stackoverflow.com/questions/41139546/angular2-ngsubmit-not-working
+  //This link helped guide some parts, has useful tips https://stackoverflow.com/questions/41139546/angular2-ngsubmit-not-working
   addLocation(form: NgForm) {
-    this.xinputValue = form.value;
+    this.xinputValue = form.value["x-coordinate"];
     // console.log(this.xinputValue);
-    this.yinputValue = form.value;
+    this.yinputValue = form.value["y-coordinate"];
     // console.log(this.yinputValue);
     console.log(this.yinputValue);
 
