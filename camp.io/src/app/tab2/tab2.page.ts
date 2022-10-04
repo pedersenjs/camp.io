@@ -49,6 +49,7 @@ export class Tab2Page {
     })
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap_',
     }).addTo(this.map2)
 
     L.marker([36.21272,-81.67292]).addTo(this.map2)
