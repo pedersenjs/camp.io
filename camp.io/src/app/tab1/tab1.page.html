@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" collapse="fade">
   <ion-toolbar>
     <ion-title>
       Camp.io
@@ -10,8 +10,16 @@
   <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
   integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
   crossorigin=""></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 </ion-header>
 
 <ion-content [fullscreen]="true" padding class="background">
   <div id="map"></div>
+  <p>Camp.io is a mobile application which tracks campsites around the United States.
+     On this main page you can search up campsites near you and plan your camping trip using the site details.
+     Don't see the campsite you're looking for? Add it to our map using the menu, and going to Add Location.
+     All you need to add a location is the name, coordinates, and any other useful information you have that might make camping there easier!
+     Got a bunch of campsites you like? Add them a list by going to the List menu. Thank you for using and supporting Camp.io</p>
 </ion-content>

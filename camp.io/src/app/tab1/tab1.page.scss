@@ -7,6 +7,20 @@ mark {
   color: black;
 }
 
+p {
+  margin: 10px auto;
+  color: #3AFFA1;
+  background-color: #0B1121;
+  width: 80%;
+  padding: 10px;
+  border: 3px solid #3AFFA1;
+  border-radius: 25px;
+}
+
 #map {
+  margin: 0 auto;
   min-height: 80%;
+  width: 80%;
+  border: 5px solid #3AFFA1;
+  border-radius: 25px;
 }
