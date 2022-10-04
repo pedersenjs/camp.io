@@ -1,9 +1,11 @@
+<!-- This code is for the header of the website -->
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Camp.io
     </ion-title>
   </ion-toolbar>
+  <!-- This code is for the necessary style sheets and components that we need for the leaflet library -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
   integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
   crossorigin=""/>
@@ -12,8 +14,10 @@
   crossorigin=""></script>
 </ion-header>
 
+<!-- Code below is for the map and form -->
 <ion-content [fullscreen]="true" padding class="background">
   <div id="map2"></div>
+  <!-- this is the code for the form to leave a review -->
   <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)">
     <mark><label for="location">X-coordinate:</label></mark>
     <input type="text" name="x-coordinate" id="x-coordinate" ngModel><br>
