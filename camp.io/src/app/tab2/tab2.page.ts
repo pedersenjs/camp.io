@@ -52,6 +52,7 @@ export class Tab2Page {
 
     //adds the first (and currently only) map layer to the map
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap_',
     }).addTo(this.map2)
 
     //adds the base marker to the map
