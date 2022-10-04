@@ -18,9 +18,11 @@ export class Tab1Page {
       center: [36.216536,-81.674616],
       zoom: 13,
       renderer: L.canvas(),
+      //Attribution control for removing attribution data:
       // attributionControl: false
     })
 
+    // Map is generated using tile provider. Markers are added using coordinate information below.
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap_',
     }).addTo(this.map)
@@ -29,9 +31,10 @@ export class Tab1Page {
     .bindPopup('Appalachian State University: <br> Elevation 3,333 ft')
     L.marker([36.230833,-81.676111]).addTo(this.map)
     .bindPopup('Howard\'s Knob: <br> Elevation 4,396 ft')
-    .on('click', () => this.router.navigateByUrl('/tab3'))
+    // Working on potential information popup which can reroute to campsite page.
+    //.on('click', () => this.router.navigateByUrl('/tab3'))
 
-    //LOOK AT IMPORTS FOR TYPESCRIPT
+    //LOOK AT IMPORTS FOR TYPESCRIPT - Working on search bar functionality
     //L.Control.geocoder().addTo(this.map);
 
     //var searchLayer = L.layerGroup().addTo(this.map);
