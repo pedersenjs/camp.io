@@ -153,3 +153,57 @@ Local styling is done on each respective page’s scss file, but the global scss
 ```
 Link to Leaflet JavaScript library for embedding Openstreetmaps:
 https://leafletjs.com/ 
+
+## Feature 3- Adding location markers based off of user input
+Below is the code that is in our TypeScript document to add a location to the map. It corresponds to the similarly named fields in the HTML form.  More fields can be added by copying the syntax. Form.value.[“the name of the field”] has to be used if there is a special character in the name, otherwise form.value.fieldname can be used to access it. 
+```
+  addLocation(form: NgForm) {
+    this.xinputValue = form.value["x-coordinate"];
+    this.yinputValue = form.value["y-coordinate"];
+    this.locationname = form.value.name;
+ 
+    L.marker([this.xinputValue,this.yinputValue]).addTo(this.map2)
+    .bindPopup(this.locationname)//36.230833,-81.676111
+  }
+  ```
+The HTML code that creates the form, and relates to the TS code that says form.value, is show below. Input items can easily be added to take in more user information, which is what we plan on working on this week. 
+```
+  <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)">
+    <mark><label for="location">X-coordinate:</label></mark>
+    <input type="text" name="x-coordinate" id="x-coordinate" ngModel><br>
+    <mark><label for="location">Y-coordinate:</label></mark>
+    <input type="text" name="y-coordinate" id="coordinate" ngModel><br>
+    <mark><label for="name">Name:</label></mark>
+    <input type="text" name="name" id="coordinate" ngModel><br>
+    <button type="submit">Add Location</button>
+  </form>
+  ```
+The search functionality is still being worked on this week, along with other visual layers for the maps, but some CSS styling was done for the pages we’re working on to make them easier to use and look at.
+```
+form {
+  margin: 0px auto;
+  color: rgb(154,55,247);
+  background-color: #0B1121;
+  width: 20%;
+  padding: 10px;
+  border: 3px solid rgb(154,55,247);
+  border-radius: 25px;
+}
+	p {
+  margin: 10px auto;
+  color: #3AFFA1;
+  background-color: #0B1121;
+  width: 80%;
+  padding: 10px;
+  border: 3px solid #3AFFA1;
+  border-radius: 25px;
+}
+#map {
+  margin: 0 auto;
+  min-height: 80%;
+  width: 80%;
+  border: 5px solid #3AFFA1;
+  border-radius: 25px;
+}
+```
+The code here provides some color matching with the background images on each page so that elements blend in better visually with their respective backgrounds, yet still stand out from the background enough so that they are usable. Light curved borders were also provided so that the elements have some symmetry with the topographical elements in the background images too.
