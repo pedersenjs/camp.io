@@ -9,9 +9,23 @@ mark {
 
 
 #map2 {
+  margin: 0 auto;
   min-height: 80%;
+  width: 80%;
+  border: 5px solid rgb(154,55,247);
+  border-radius: 25px;
 }
 
 #location{
   width: 100px;
+}
+
+form {
+  margin: 0px auto;
+  color: rgb(154,55,247);
+  background-color: #0B1121;
+  width: 20%;
+  padding: 10px;
+  border: 3px solid rgb(154,55,247);
+  border-radius: 25px;
 }
