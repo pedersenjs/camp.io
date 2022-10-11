@@ -19,11 +19,11 @@
   <div id="map2"></div>
   <!-- this is the code for the form to leave a review -->
   <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)">
-    <mark><label for="location">X-coordinate:</label></mark>
+    <label for="location">X-coordinate:</label>
     <input type="text" name="x-coordinate" id="x-coordinate" ngModel><br>
-    <mark><label for="location">Y-coordinate:</label></mark>
+    <label for="location">Y-coordinate:</label>
     <input type="text" name="y-coordinate" id="coordinate" ngModel><br>
-    <mark><label for="name">Name:</label></mark>
+    <label for="name">Name:</label>
     <input type="text" name="name" id="coordinate" ngModel><br>
 
     <!-- Code for rating -->
@@ -34,19 +34,21 @@
 
           }
           display_message.innerHTML= message;
-      } 
+      }
     </script> -->
-    <mark><label for="rating">Rating Out of 5:</label></mark>
+    <label for="rating">Rating Out of 5:</label>
     <input type="text" name="rating" id="coordinate" onkeypress="showMessage()" ngModel><br>
+
     <!-- <p> Message is: <span id = "display_message"></span> </p> -->
     <span class="fa fa-star checked"></span>
     <span class="fa fa-star checked "></span>
     <span class="fa fa-star checked"></span>
     <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span><br>
+
     <!-- Helpful review form functionality https://www.w3schools.com/howto/howto_css_user_rating.asp    -->
-    <mark><label for="description">Description:</label></mark>
-    <textarea type="text" name="description"  cols="50" rows="10" id="coordinate" ngModel></textarea><br>
+    <label for="description">Description:</label><br>
+    <textarea type="text" name="description"  cols="30" rows="7" id="coordinate" ngModel></textarea><br>
     <button type="submit">Add Location</button>
   </form>
 </ion-content>
