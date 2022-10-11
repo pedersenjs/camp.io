@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@capacitor/camera": "^4.1.0",
-    "@capacitor/filesystem": "^4.1.0",
-    "@capacitor/preferences": "^4.0.1",
-    "@capacitor/storage": "^1.2.5",
-    "@ionic/pwa-elements": "^3.1.1"
-  }
-}
