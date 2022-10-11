@@ -207,3 +207,81 @@ form {
 }
 ```
 The code here provides some color matching with the background images on each page so that elements blend in better visually with their respective backgrounds, yet still stand out from the background enough so that they are usable. Light curved borders were also provided so that the elements have some symmetry with the topographical elements in the background images too.
+
+## Weekly Update number 5
+For the search bar the geosearch-leaflet package had to be installed using npm install –save geosearch-leaflet. Then, the package had to be updated to remove google related files as they caused compiler errors. After installation and correction to the errors the package must be imported into the typescript files and added to the leaflet map objects.
+
+![image](https://user-images.githubusercontent.com/89262517/195190377-7939a1f8-1e89-4428-acca-c35102d682e5.png)
+###### Image of the search bar feature
+```
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
+import { GeoSearchControl } from 'leaflet-geosearch';
+const provider = new OpenStreetMapProvider();
+```
+Here we have our provider for the location information defined as well as OpenStreetMaps which also provide the tile renders for our maps.
+```
+ngOnInit() {
+    this.map = L.map('map', {
+      center: [36.216536,-81.674616],
+      zoom: 13,
+      renderer: L.canvas(),
+      //Attribution control for removing attribution data:
+      // attributionControl: false
+    })
+ 
+    this.map.addControl(GeoSearchControl({
+      provider,
+      style: 'bar',
+    }))
+```
+In the init function for the map code has been added to add the search bar control layer on top of the existing map using the established provider for the auto-fill data. 
+```
+@import "~leaflet/dist/leaflet.css";
+@import "~leaflet-geosearch/dist/geosearch.css";
+```
+Styling for the search bar is provided by the global.scss file which requires css imports of the dependency css files. These files can be edited and rebuilt with the project to change the styling, which needed some edits to show the search bar correctly on dark mode devices.
+
+![image](https://user-images.githubusercontent.com/89262517/195190509-e4f34461-794a-4643-8c27-ae13dfe0421b.png)
+###### Image of the review feature including a rating and a description
+We also added code to insert a description and a rating into the review, as shown in the HTML code below. 
+```
+<label for="description">Description:</label><br>
+    <textarea type="text" name="description"  cols="30" rows="5" id="coordinate" ngModel></textarea><br>
+   <label for="rating">Rating Out of 5:  </label>
+    <!-- <p> Message is: <span id = "display_message"></span> </p> -->
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span><br>
+    <input type="text" name="rating" id="coordinate" onkeypress="showMessage()" ngModel><br>
+ ```
+Below is the Typescript code. The If statements affect how many stars are displayed on the tab for the rating. Not all if statements are show, but it goes until five out of five stars. 
+```
+ this.locationname = form.value.name;
+    this.rating = form.value.rating;
+    this.description=form.value.description;
+if (this.rating == 1) {
+      L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
+        .bindPopup(this.locationname + "<br>" +
+        "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
+        "Description: " + this.description)
+    }
+    if (this.rating == 2) {
+      L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
+        .bindPopup(this.locationname + "<br>" +
+        "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
+        "<span class=\"fa fa-star checked \"></span><br>" +
+        "Description: " + this.description)
+ 
+    }
+    if (this.rating == 3) {
+      L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
+        .bindPopup(this.locationname + "<br>" +
+        "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
+        "<span class=\"fa fa-star checked \"></span>" +
+        // <span class=\"fa fa-star checked\"></span>
+        "<span class=\"fa fa-star\"></span><br>"  +
+        "Description: " + this.description)
+    }
+```
