@@ -62,9 +62,9 @@ export class Tab2Page {
       // L.marker([this.xinputValue, this.yinputValue], {icon: firefoxIcon}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
-        "Description: " + this.description + "<img src='" + this.photo+"' />")//just want it to wrok but it wont
-        // "Description: " + this.description)
-         console.log(this.photo)
+        // "Description: " + this.description + "<img src='" + this.photo+"' />")//just want it to wrok but it wont
+        "Description: " + this.description)
+        //  console.log(this.photo)
 
 
     }
