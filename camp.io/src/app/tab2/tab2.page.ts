@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import * as L from "leaflet"
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { GeoSearchControl } from 'leaflet-geosearch';
+import { PhotoService } from '../services/photo.service';
 const provider = new OpenStreetMapProvider();
 @Component({
   selector: 'app-tab2',
@@ -21,16 +22,12 @@ export class Tab2Page {
   rating = 0;
   locationname = "user input";
   description="";
-  constructor() { }
+  photo="";
+  constructor(public photoService: PhotoService) { }
 
-  //https://stackoverflow.com/questions/47529327/angular-4-get-input-value
-  // onKey(event) {
-  //   this.xinputValue = event.target.value;
-  //   console.log(this.xinputValue);
-  //   this.yinputValue = event.target.value;
-  //   console.log(this.yinputValue);
-
-  // }
+  addPhotoToGallery(){
+    this.photoService.addNewToGallery();
+  }
 
   //This code below is to add a new location maker
   //This link helped guide some parts, has useful tips https://stackoverflow.com/questions/41139546/angular2-ngsubmit-not-working
@@ -41,14 +38,34 @@ export class Tab2Page {
     this.locationname = form.value.name;
     this.rating = form.value.rating;
     this.description=form.value.description;
-    // if (this.locationname == ""){
-    //   this.locationname = "user input";
-    // }
+    this.photo=form.value.photo
+
+    // var firefoxIcon = L.icon({
+    //   // iconUrl: 'http://joshuafrazier.info/images/firefox.svg',
+    //   iconUrl: '/camp.io/src/app/tab2/howardsknob.jpg',
+    //   iconSize: [38, 95], // size of the icon
+    //   popupAnchor: [0,-15]
+    //   });
+          // create popup contents
+    // var customPopup = "Mozilla Toronto Offices<br/><img src='http://joshuafrazier.info/images/maptime.gif' alt='maptime logo gif' width='350px'/>";
+    
+    // // specify popup options 
+    // var customOptions =
+    //     {
+    //     'maxWidth': '500',
+    //     'className' : 'custom'
+    //     }
+
+
     if (this.rating == 1) {
       L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
+      // L.marker([this.xinputValue, this.yinputValue], {icon: firefoxIcon}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
-        "Description: " + this.description)
+        "Description: " + this.description + "<img src='" + this.photo+"' />")//just want it to wrok but it wont
+        // "Description: " + this.description)
+         console.log(this.photo)
+
 
     }
     if (this.rating == 2) {

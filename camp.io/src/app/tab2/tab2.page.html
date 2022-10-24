@@ -13,36 +13,47 @@
 <ion-content [fullscreen]="true" padding class="background">
   <div id="map2"></div>
   <!-- this is the code for the form to leave a review -->
-  <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)">
-    <label for="location">X-coordinate:</label>
-    <input type="text" name="x-coordinate" id="x-coordinate" ngModel><br>
-    <label for="location">Y-coordinate:</label>
-    <input type="text" name="y-coordinate" id="coordinate" ngModel><br>
-    <label for="name">Name:</label>
-    <input type="text" name="name" id="coordinate" ngModel><br>
+  <div class ='parent'>
+    <div class='child'><form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)">
 
-    <!-- Code for rating -->
-    <!-- <script type="text/JavaScript">
-      function showMessage(){
-          var message = document.getElementById("message").value;
-          if (message == 1){
-
-          }
-          display_message.innerHTML= message;
-      }
-    </script> -->
-    <label for="rating">Rating Out of 5:  </label>
-    <!-- <p> Message is: <span id = "display_message"></span> </p> -->
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span><br>
-    <input type="text" name="rating" id="coordinate" onkeypress="showMessage()" ngModel><br>
-
-    <!-- Helpful review form functionality https://www.w3schools.com/howto/howto_css_user_rating.asp    -->
-    <label for="description">Description:</label><br>
-    <textarea type="text" name="description"  cols="30" rows="5" id="coordinate" ngModel></textarea><br>
-    <button type="submit">Add Location</button>
-  </form>
+      <label for="location">X-coordinate:</label>
+      <input type="text" name="x-coordinate" id="x-coordinate" ngModel><br>
+      <label for="location">Y-coordinate:</label>
+      <input type="text" name="y-coordinate" id="coordinate" ngModel><br>
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="coordinate" ngModel><br>
+      <label for="rating">Rating Out of 5:  </label>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>
+      <input type="text" name="rating" id="coordinate" onkeypress="showMessage()" ngModel><br>
+  
+      <!-- Helpful review form functionality https://www.w3schools.com/howto/howto_css_user_rating.asp    -->
+      <label for="description">Description:</label><br>
+      <textarea type="text" name="description"  cols="30" rows="5" id="coordinate" ngModel></textarea><br>
+      <button type="submit" name = "photo" (click)="addPhotoToGallery()">Add Photo</button> <!-- The addPhotoToGallery() calls the photo service and adds photo to gallery-->
+      <button type="submit" >Complete Review</button> <!-- The addPhotoToGallery() calls the photo service and adds photo to gallery-->
+      
+    </form></div>
+    
+    <div class='child'>
+      <!-- Photo gallery thing -->
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+            <ion-img [src]="photo.webviewPath"></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid></div>
+  </div>  
 </ion-content>
+
+<!-- camera button -->
+      <!-- <ion-fab>
+        <ion-fab-button (click)="addPhotoToGallery()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+      </ion-fab> -->
+ 
