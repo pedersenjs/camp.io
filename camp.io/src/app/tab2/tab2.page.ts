@@ -40,7 +40,6 @@ export class Tab2Page {
     this.description=form.value.description;
     this.photo=form.value.photo;
 
-    alert("Location Pin Successfully Added!");
     // var firefoxIcon = L.icon({
     //   // iconUrl: 'http://joshuafrazier.info/images/firefox.svg',
     //   iconUrl: '/camp.io/src/app/tab2/howardsknob.jpg',
