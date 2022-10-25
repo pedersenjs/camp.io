@@ -38,8 +38,9 @@ export class Tab2Page {
     this.locationname = form.value.name;
     this.rating = form.value.rating;
     this.description=form.value.description;
-    this.photo=form.value.photo
+    this.photo=form.value.photo;
 
+    alert("Location Pin Successfully Added!");
     // var firefoxIcon = L.icon({
     //   // iconUrl: 'http://joshuafrazier.info/images/firefox.svg',
     //   iconUrl: '/camp.io/src/app/tab2/howardsknob.jpg',
@@ -48,14 +49,13 @@ export class Tab2Page {
     //   });
           // create popup contents
     // var customPopup = "Mozilla Toronto Offices<br/><img src='http://joshuafrazier.info/images/maptime.gif' alt='maptime logo gif' width='350px'/>";
-    
-    // // specify popup options 
+
+    // // specify popup options
     // var customOptions =
     //     {
     //     'maxWidth': '500',
     //     'className' : 'custom'
     //     }
-
 
     if (this.rating == 1) {
       L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
@@ -65,8 +65,6 @@ export class Tab2Page {
         // "Description: " + this.description + "<img src='" + this.photo+"' />")//just want it to wrok but it wont
         "Description: " + this.description)
         //  console.log(this.photo)
-
-
     }
     if (this.rating == 2) {
       L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
@@ -74,8 +72,8 @@ export class Tab2Page {
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span><br>" +
         "Description: " + this.description)
-
     }
+
     if (this.rating == 3) {
       L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
@@ -84,8 +82,8 @@ export class Tab2Page {
         // <span class=\"fa fa-star checked\"></span>
         "<span class=\"fa fa-star\"></span><br>"  +
         "Description: " + this.description)
-
     }
+
     if (this.rating == 4) {
       L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
@@ -94,8 +92,8 @@ export class Tab2Page {
         "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star\"></span><br>"  +
         "Description: " + this.description)
-
     }
+
     if (this.rating == 5) {
       L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
@@ -105,14 +103,11 @@ export class Tab2Page {
         "<span class=\"fa fa-star\"></span>"  +
         "<span class=\"fa fa-star\"></span><br>"  +
         "Description: " + this.description)
-
     }
-
   }
 
   //code that is executed when the website is initialized
   ngOnInit() {
-
     //create the map object using the leaflet syntax
     this.map2 = L.map('map2', {
       center: [36.21272, -81.67292],
@@ -130,8 +125,38 @@ export class Tab2Page {
       attribution: '© OpenStreetMap_',
     }).addTo(this.map2)
 
-    L.marker([36.21272, -81.67292]).addTo(this.map2)
-      .bindPopup('Appalachian State University ')
+    L.marker([36.215851,-81.684765], {title:"Appalachian State University"}).addTo(this.map2)
+    .bindPopup('Appalachian State University:<br>' +
+    "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
+    "<span class='fa fa-star'></span>" +
+    "<span class=\"fa fa-star checked\"></span>" +
+    "<span class=\"fa fa-star\"></span>"  +
+    "<span class=\"fa fa-star\"></span><br>"  +
+    "Description: This is our university that we attend. I one time took a nap on Sanford Mall for a few hours between classes."
+    + " I had a dream Yosef threw me a birthday party but other than that it was nice. would come back");
+    // L.marker([36.215851,-81.684765], {title:"Appalachian State University"}).addTo(this.map)
+    // .bindPopup('Appalachian State University: <br> Elevation 3,333 ft')
+
+    L.marker([36.10937607492409,-81.80272711107834], {title:"Briar Patch Campsite"}).addTo(this.map2)
+    // .bindPopup('Briar Patch Campsite: <br> Elevation 4,396 ft')
+    .bindPopup('Briar Patch Campsite:<br>' +
+    "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
+    "<span class='fa fa-star'></span>" +
+    "<span class=\"fa fa-star checked\"></span>" +
+    "<span class=\"fa fa-star\"></span>"  +
+    "<span class=\"fa fa-star\"></span><br>"  +
+    "Description: Super cool campsite off the beaten path. A few mile hike in with steep elevation gain "
+    + "No one around for miles at night. Except for the bears");
+
+    L.marker([36.120648650031036,-81.79391265388594], {title:"Refuge Campsite"}).addTo(this.map2)
+    //36.120648650031036, -81.79391265388594
+    // .bindPopup('Refuge Campsite: <br> Elevation 4,396 ft')
+    .bindPopup('Refuge Campsite:<br>' +
+    "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
+    "<span class='fa fa-star'></span>" +
+    "<span class=\"fa fa-star checked\"></span>" +
+    "<span class=\"fa fa-star\"></span><br>"  +
+    "Description: Not going to lie here, did get pretty scared at night. There were a lot of owls hooting and no one else around.");
 
     setTimeout(() => {
       this.map2.invalidateSize();

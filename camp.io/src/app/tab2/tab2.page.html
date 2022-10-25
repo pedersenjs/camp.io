@@ -15,14 +15,14 @@
   <!-- this is the code for the form to leave a review -->
   <div class ='parent'>
     <div class='child'>
-    <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)">
+    <form #locationForm="ngForm" action="" (ngSubmit)="addLocation(locationForm)" method="post">
     <!-- <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)" action="http://localhost:8100/tabs/tab2" method="POST"> -->
+      <label for="name">Name:</label>
+      <input type="textbox" name="name" id="name" ngModel/><br>
       <label for="location">X-coordinate:</label>
       <input type="text" name="x-coordinate" id="x-coordinate" ngModel/><br>
       <label for="location">Y-coordinate:</label>
       <input type="text" name="y-coordinate" id="coordinate" ngModel/><br>
-      <label for="name">Name:</label>
-      <input type="textbox" name="name" id="name" ngModel/><br>
       <label for="rating">Rating Out of 5:  </label>
       <span class="fa fa-star checked"></span>
       <span class="fa fa-star checked"></span>
@@ -30,12 +30,12 @@
       <span class="fa fa-star"></span>
       <span class="fa fa-star"></span>
       <input type="text" name="rating" id="coordinate"  ngModel/><br>
-  
+
       <!-- Helpful review form functionality https://www.w3schools.com/howto/howto_css_user_rating.asp    -->
       <label for="description">Description:</label><br>
       <textarea type="text" name="description"  cols="30" rows="5" id="coordinate" ngModel></textarea><br>
       <button type="submit" name = "photo" (click)="addPhotoToGallery()">Add Photo</button><br> <!-- The addPhotoToGallery() calls the photo service and adds photo to gallery-->
-      <button type="submit" onClick="showInput()">Complete Review</button> <!-- The addPhotoToGallery() calls the photo service and adds photo to gallery-->
+      <button type="submit" onClick='showInput();'>Complete Review</button> <!-- The addPhotoToGallery() calls the photo service and adds photo to gallery-->
       <script>
         // document.getElementsByName('name')[0].value
         function showInput() {
@@ -44,12 +44,18 @@
       </script>
     </form>
     </div>
-    
+
     <div class='child'>
       <!-- Photo gallery thing -->
       <div>
         <!-- <input type ="text" name="display" id="display"> -->
         <!-- trying to write code to display review -->
+        <h3>Marker Added:</h3>
+        <p>name: </p>
+        <p>x-coordinate: </p>
+        <p>y-coordinate: </p>
+        <p>rating: </p>
+        <p>description: </p>
       </div>
       <ion-grid>
         <ion-row>
@@ -58,7 +64,7 @@
           </ion-col>
         </ion-row>
       </ion-grid></div>
-  </div>  
+  </div>
 </ion-content>
 
 <!-- camera button -->
@@ -67,4 +73,3 @@
           <ion-icon name="camera"></ion-icon>
         </ion-fab-button>
       </ion-fab> -->
- 

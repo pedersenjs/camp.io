@@ -50,9 +50,7 @@ export class Tab1Page {
     .bindPopup('Howard\'s Knob:<br>' +
     "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
     "<span class='fa fa-star'></span>" +
-    "<span class=\"fa fa-star checked\"></span>" +
-    "<span class=\"fa fa-star\"></span>"  +
-    "<span class=\"fa fa-star\"></span><br>"  +
+    "<span class=\"fa fa-star checked\"></span><br>"  +
     "Description: Took a nap here once. But beware, they shut the gates at sunset. "
     + "So if you sleep here too long youll get locked in and they wont care");
     L.marker([36.10937607492409,-81.80272711107834], {title:"Briar Patch Campsite"}).addTo(this.map)
@@ -71,7 +69,6 @@ export class Tab1Page {
     "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
     "<span class='fa fa-star'></span>" +
     "<span class=\"fa fa-star checked\"></span>" +
-    "<span class=\"fa fa-star\"></span>"  +
     "<span class=\"fa fa-star\"></span><br>"  +
     "Description: Not going to lie here, did get pretty scared at night. There were a lot of owls hooting and no one else around.");
 
