@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+//import { FormBuilder } from '@angular/forms';
 import { NgForm } from '@angular/forms';
-import * as L from "leaflet"
+import * as L from "leaflet";
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { GeoSearchControl } from 'leaflet-geosearch';
 import { PhotoService } from '../services/photo.service';
+import "leaflet.locatecontrol";
 const provider = new OpenStreetMapProvider();
 @Component({
   selector: 'app-tab2',
