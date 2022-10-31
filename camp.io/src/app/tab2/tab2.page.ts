@@ -169,7 +169,7 @@ export class Tab2Page {
       attribution: '© OpenStreetMap_',
     }).addTo(this.map2)
 
-    L.marker([36.215851,-81.684765], {title:"Appalachian State University"}).addTo(this.map2)
+    L.marker([36.215851,-81.684765], {title:"Appalachian State University", icon: this.greenDriveIcon}).addTo(this.map2)
     .bindPopup('Appalachian State University:<br>' +
     "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
     "<span class='fa fa-star'></span>" +
