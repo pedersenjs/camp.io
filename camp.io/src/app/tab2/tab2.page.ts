@@ -26,6 +26,50 @@ export class Tab2Page {
   photo="";
   constructor(public photoService: PhotoService) { }
 
+  greenDriveIcon = L.icon({
+    iconUrl: '../../assets/green_default.png',
+    shadowUrl: '../../assets/markers_shadow.png',
+
+    iconSize: [ 30, 45 ],
+    iconAnchor: [ 17, 42 ],
+    popupAnchor: [ 1, -32 ],
+    shadowAnchor: [ 10, 12 ],
+    shadowSize: [ 36, 16 ]
+  });
+
+  redDriveIcon = L.icon({
+    iconUrl: '../../assets/red_default.png',
+    shadowUrl: '../../assets/markers_shadow.png',
+
+    iconSize: [ 30, 45 ],
+    iconAnchor: [ 17, 42 ],
+    popupAnchor: [ 1, -32 ],
+    shadowAnchor: [ 10, 12 ],
+    shadowSize: [ 36, 16 ]
+  });
+
+  greenBackIcon = L.icon({
+    iconUrl: '../../assets/green_hex.png',
+    shadowUrl: '../../assets/markers_shadow.png',
+
+    iconSize: [ 30, 45 ],
+    iconAnchor: [ 17, 42 ],
+    popupAnchor: [ 1, -32 ],
+    shadowAnchor: [ 10, 12 ],
+    shadowSize: [ 36, 16 ]
+  });
+
+  redBackIcon = L.icon({
+    iconUrl: '../../assets/red_hex.png',
+    shadowUrl: '../../assets/markers_shadow.png',
+
+    iconSize: [ 30, 45 ],
+    iconAnchor: [ 17, 42 ],
+    popupAnchor: [ 1, -32 ],
+    shadowAnchor: [ 10, 12 ],
+    shadowSize: [ 36, 16 ]
+  });
+
   addPhotoToGallery(){
     this.photoService.addNewToGallery();
   }

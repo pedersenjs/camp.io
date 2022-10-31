@@ -13,6 +13,50 @@ const provider = new OpenStreetMapProvider();
 export class Tab1Page {
   map: L.Map
 
+  greenDriveIcon = L.icon({
+    iconUrl: '../../assets/green_default.png',
+    shadowUrl: '../../assets/markers_shadow.png',
+
+    iconSize: [ 30, 45 ],
+    iconAnchor: [ 17, 42 ],
+    popupAnchor: [ 1, -32 ],
+    shadowAnchor: [ 10, 12 ],
+    shadowSize: [ 36, 16 ]
+  });
+
+  redDriveIcon = L.icon({
+    iconUrl: '../../assets/red_default.png',
+    shadowUrl: '../../assets/markers_shadow.png',
+
+    iconSize: [ 30, 45 ],
+    iconAnchor: [ 17, 42 ],
+    popupAnchor: [ 1, -32 ],
+    shadowAnchor: [ 10, 12 ],
+    shadowSize: [ 36, 16 ]
+  });
+
+  greenBackIcon = L.icon({
+    iconUrl: '../../assets/green_hex.png',
+    shadowUrl: '../../assets/markers_shadow.png',
+
+    iconSize: [ 30, 45 ],
+    iconAnchor: [ 17, 42 ],
+    popupAnchor: [ 1, -32 ],
+    shadowAnchor: [ 10, 12 ],
+    shadowSize: [ 36, 16 ]
+  });
+
+  redBackIcon = L.icon({
+    iconUrl: '../../assets/red_hex.png',
+    shadowUrl: '../../assets/markers_shadow.png',
+
+    iconSize: [ 30, 45 ],
+    iconAnchor: [ 17, 42 ],
+    popupAnchor: [ 1, -32 ],
+    shadowAnchor: [ 10, 12 ],
+    shadowSize: [ 36, 16 ]
+  });
+
   constructor(public router: Router) {}
 
   ngOnInit() {
@@ -24,6 +68,8 @@ export class Tab1Page {
       // attributionControl: false
     })
 
+
+
     this.map.addControl(GeoSearchControl({
       provider,
       style: 'bar',
@@ -34,7 +80,7 @@ export class Tab1Page {
     }).addTo(this.map)
 
     //initial example markers
-    L.marker([36.215851,-81.684765], {title:"Appalachian State University"}).addTo(this.map)
+    L.marker([36.215851,-81.684765], {title:"Appalachian State University", icon: this.greenDriveIcon}).addTo(this.map)
     .bindPopup('Appalachian State University:<br>' +
     "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
     "<span class='fa fa-star'></span>" +
@@ -45,7 +91,7 @@ export class Tab1Page {
     + " I had a dream Yosef threw me a birthday party but other than that it was nice. would come back");
     // L.marker([36.215851,-81.684765], {title:"Appalachian State University"}).addTo(this.map)
     // .bindPopup('Appalachian State University: <br> Elevation 3,333 ft')
-    L.marker([36.230833,-81.676111], {title:"Howard\'s Knob"}).addTo(this.map)
+    L.marker([36.230833,-81.676111], {title:"Howard\'s Knob", icon: this.redDriveIcon}).addTo(this.map)
     // .bindPopup('Howard\'s Knob: <br> Elevation 4,396 ft')
     .bindPopup('Howard\'s Knob:<br>' +
     "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
@@ -53,7 +99,7 @@ export class Tab1Page {
     "<span class=\"fa fa-star checked\"></span><br>"  +
     "Description: Took a nap here once. But beware, they shut the gates at sunset. "
     + "So if you sleep here too long youll get locked in and they wont care");
-    L.marker([36.10937607492409,-81.80272711107834], {title:"Briar Patch Campsite"}).addTo(this.map)
+    L.marker([36.10937607492409,-81.80272711107834], {title:"Briar Patch Campsite", icon: this.greenBackIcon}).addTo(this.map)
     // .bindPopup('Briar Patch Campsite: <br> Elevation 4,396 ft')
     .bindPopup('Briar Patch Campsite:<br>' +
     "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
@@ -63,7 +109,7 @@ export class Tab1Page {
     "<span class=\"fa fa-star\"></span><br>"  +
     "Description: Super cool campsite off the beaten path. A few mile hike in with steep elevation gain "
     + "No one around for miles at night. Except for the bears");
-    L.marker([36.120648650031036,-81.79391265388594], {title:"Refuge Campsite"}).addTo(this.map)//36.120648650031036, -81.79391265388594
+    L.marker([36.120648650031036,-81.79391265388594], {title:"Refuge Campsite", icon: this.redBackIcon}).addTo(this.map)//36.120648650031036, -81.79391265388594
     // .bindPopup('Refuge Campsite: <br> Elevation 4,396 ft')
     .bindPopup('Refuge Campsite:<br>' +
     "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
