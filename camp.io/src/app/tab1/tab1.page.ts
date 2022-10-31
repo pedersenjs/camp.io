@@ -14,7 +14,7 @@ export class Tab1Page {
   map: L.Map
 
   greenDriveIcon = L.icon({
-    iconUrl: '../../assets/green_default.png',
+    iconUrl: '../../assets/green_default1.png',
     shadowUrl: '../../assets/markers_shadow.png',
 
     iconSize: [ 30, 45 ],
@@ -25,7 +25,7 @@ export class Tab1Page {
   });
 
   redDriveIcon = L.icon({
-    iconUrl: '../../assets/red_default.png',
+    iconUrl: '../../assets/red_default1.png',
     shadowUrl: '../../assets/markers_shadow.png',
 
     iconSize: [ 30, 45 ],
@@ -36,7 +36,7 @@ export class Tab1Page {
   });
 
   greenBackIcon = L.icon({
-    iconUrl: '../../assets/green_hex.png',
+    iconUrl: '../../assets/green_hex1.png',
     shadowUrl: '../../assets/markers_shadow.png',
 
     iconSize: [ 30, 45 ],
@@ -47,7 +47,7 @@ export class Tab1Page {
   });
 
   redBackIcon = L.icon({
-    iconUrl: '../../assets/red_hex.png',
+    iconUrl: '../../assets/red_hex1.png',
     shadowUrl: '../../assets/markers_shadow.png',
 
     iconSize: [ 30, 45 ],

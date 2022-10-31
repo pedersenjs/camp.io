@@ -27,7 +27,7 @@ export class Tab2Page {
   constructor(public photoService: PhotoService) { }
 
   greenDriveIcon = L.icon({
-    iconUrl: '../../assets/green_default.png',
+    iconUrl: '../../assets/green_default1.png',
     shadowUrl: '../../assets/markers_shadow.png',
 
     iconSize: [ 30, 45 ],
@@ -38,7 +38,7 @@ export class Tab2Page {
   });
 
   redDriveIcon = L.icon({
-    iconUrl: '../../assets/red_default.png',
+    iconUrl: '../../assets/red_default1.png',
     shadowUrl: '../../assets/markers_shadow.png',
 
     iconSize: [ 30, 45 ],
@@ -49,7 +49,7 @@ export class Tab2Page {
   });
 
   greenBackIcon = L.icon({
-    iconUrl: '../../assets/green_hex.png',
+    iconUrl: '../../assets/green_hex1.png',
     shadowUrl: '../../assets/markers_shadow.png',
 
     iconSize: [ 30, 45 ],
@@ -60,7 +60,7 @@ export class Tab2Page {
   });
 
   redBackIcon = L.icon({
-    iconUrl: '../../assets/red_hex.png',
+    iconUrl: '../../assets/red_hex1.png',
     shadowUrl: '../../assets/markers_shadow.png',
 
     iconSize: [ 30, 45 ],
