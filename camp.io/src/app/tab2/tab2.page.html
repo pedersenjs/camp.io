@@ -35,6 +35,16 @@
       <span class="fa fa-star"></span>
       <span class="fa fa-star"></span>
       <input type="text" name="rating" id="coordinate"  ngModel/><br>
+      <!-- paid or free -->
+      <input type="radio" value="Free" id="free" name="paidOrFree" ngModel>
+      <label for="free">Free </label>
+      <input type="radio" value="Paid" id="paid" name="paidOrFree" ngModel>
+      <label for="paid">Paid</label><br>
+      <!-- hike in or drive up -->
+      <input type="radio" value = "Drive" id="drive" name="hikeOrDrive" ngModel>
+      <label for="drive">Drive To </label>
+      <input type="radio" value ="Hike" id="hike" name="hikeOrDrive" ngModel>
+      <label for="hike">Hike To</label><br>
 
       <!-- Helpful review form functionality https://www.w3schools.com/howto/howto_css_user_rating.asp    -->
       <label for="description">Description:</label><br>

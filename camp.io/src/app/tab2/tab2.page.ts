@@ -24,6 +24,8 @@ export class Tab2Page {
   locationname = "user input";
   description="";
   photo="";
+  freeOrPaid="";
+  driveOrHike="";
   constructor(public photoService: PhotoService) { }
 
   greenDriveIcon = L.icon({
@@ -83,7 +85,9 @@ export class Tab2Page {
     this.locationname = form.value.name;
     this.rating = form.value.rating;
     this.description=form.value.description;
-    this.photo=form.value.photo;
+    this.freeOrPaid = form.controls['paidOrFree'].value;
+    this.driveOrHike = form.controls['hikeOrDrive'].value;
+    // console.log(this.freeOrPaid);
 
     // var firefoxIcon = L.icon({
     //   // iconUrl: 'http://joshuafrazier.info/images/firefox.svg',
@@ -100,9 +104,23 @@ export class Tab2Page {
     //     'maxWidth': '500',
     //     'className' : 'custom'
     //     }
-
+    var iconVariable = this.greenDriveIcon;
+    if (this.driveOrHike == "Hike"){
+      if (this.freeOrPaid == "Free"){
+        iconVariable = this.greenBackIcon;
+      } else {
+        iconVariable = this.redBackIcon;
+      }
+    }
+    else {
+      if (this.freeOrPaid == "Free"){
+        iconVariable = this.greenDriveIcon;
+      } else {
+        iconVariable = this.redDriveIcon;
+      }
+    }
     if (this.rating == 1) {
-      L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
+      L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
       // L.marker([this.xinputValue, this.yinputValue], {icon: firefoxIcon}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
@@ -111,7 +129,7 @@ export class Tab2Page {
         //  console.log(this.photo)
     }
     if (this.rating == 2) {
-      L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
+      L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span><br>" +
@@ -119,7 +137,7 @@ export class Tab2Page {
     }
 
     if (this.rating == 3) {
-      L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
+      L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
@@ -129,7 +147,7 @@ export class Tab2Page {
     }
 
     if (this.rating == 4) {
-      L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
+      L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
@@ -139,7 +157,7 @@ export class Tab2Page {
     }
 
     if (this.rating == 5) {
-      L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
+      L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
