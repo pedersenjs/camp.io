@@ -3,7 +3,10 @@ import { Router } from '@angular/router';
 import * as L from "leaflet"
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { GeoSearchControl } from 'leaflet-geosearch';
+import 'leaflet-panel-layers';
+import 'leaflet.locatecontrol';
 const provider = new OpenStreetMapProvider();
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -68,12 +71,12 @@ export class Tab1Page {
       // attributionControl: false
     })
 
-
-
     this.map.addControl(GeoSearchControl({
       provider,
       style: 'bar',
     }))
+
+    L.control.locate().addTo(this.map);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap_',

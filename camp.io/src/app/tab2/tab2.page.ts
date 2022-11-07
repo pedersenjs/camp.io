@@ -5,8 +5,9 @@ import * as L from "leaflet";
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { GeoSearchControl } from 'leaflet-geosearch';
 import { PhotoService } from '../services/photo.service';
-import "leaflet.locatecontrol";
+import 'leaflet.locatecontrol';
 const provider = new OpenStreetMapProvider();
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -104,6 +105,7 @@ export class Tab2Page {
     //     'maxWidth': '500',
     //     'className' : 'custom'
     //     }
+
     var iconVariable = this.greenDriveIcon;
     if (this.driveOrHike == "Hike"){
       if (this.freeOrPaid == "Free"){
@@ -119,6 +121,7 @@ export class Tab2Page {
         iconVariable = this.redDriveIcon;
       }
     }
+
     if (this.rating == 1) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
       // L.marker([this.xinputValue, this.yinputValue], {icon: firefoxIcon}).addTo(this.map2)
@@ -166,6 +169,14 @@ export class Tab2Page {
         "<span class=\"fa fa-star\"></span><br>"  +
         "Description: " + this.description)
     }
+
+    document.getElementById('displayName').innerHTML += this.locationname;
+    document.getElementById('displayX').innerHTML += this.xinputValue;
+    document.getElementById('displayY').innerHTML += this.yinputValue;
+    document.getElementById('displayRating').innerHTML += this.rating;
+    document.getElementById('displayFreePaid').innerHTML += this.freeOrPaid;
+    document.getElementById('displayDriveHike').innerHTML += this.driveOrHike;
+    document.getElementById('displayDesc').innerHTML += this.description;
   }
 
   //code that is executed when the website is initialized
@@ -181,6 +192,8 @@ export class Tab2Page {
       provider,
       style: 'bar',
     }))
+
+    L.control.locate().addTo(this.map2);
 
     //adds the first (and currently only) map layer to the map
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -199,7 +212,7 @@ export class Tab2Page {
     // L.marker([36.215851,-81.684765], {title:"Appalachian State University"}).addTo(this.map)
     // .bindPopup('Appalachian State University: <br> Elevation 3,333 ft')
 
-    L.marker([36.10937607492409,-81.80272711107834], {title:"Briar Patch Campsite"}).addTo(this.map2)
+    L.marker([36.10937607492409,-81.80272711107834], {title:"Briar Patch Campsite", icon: this.greenBackIcon}).addTo(this.map2)
     // .bindPopup('Briar Patch Campsite: <br> Elevation 4,396 ft')
     .bindPopup('Briar Patch Campsite:<br>' +
     "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
@@ -210,7 +223,7 @@ export class Tab2Page {
     "Description: Super cool campsite off the beaten path. A few mile hike in with steep elevation gain "
     + "No one around for miles at night. Except for the bears");
 
-    L.marker([36.120648650031036,-81.79391265388594], {title:"Refuge Campsite"}).addTo(this.map2)
+    L.marker([36.120648650031036,-81.79391265388594], {title:"Refuge Campsite", icon: this.redBackIcon}).addTo(this.map2)
     //36.120648650031036, -81.79391265388594
     // .bindPopup('Refuge Campsite: <br> Elevation 4,396 ft')
     .bindPopup('Refuge Campsite:<br>' +

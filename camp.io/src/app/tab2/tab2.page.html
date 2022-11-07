@@ -51,12 +51,6 @@
       <textarea type="text" name="description"  cols="30" rows="5" id="coordinate" ngModel></textarea><br>
       <button name="photo" (click)="addPhotoToGallery()">Add Photo</button><br> <!-- The addPhotoToGallery() calls the photo service and adds photo to gallery-->
       <button type="submit" onClick='alert("Location Pin Added Successfully!")'>Complete Review</button> <!-- The addPhotoToGallery() calls the photo service and adds photo to gallery-->
-      <script>
-        // document.getElementsByName('name')[0].value
-        function showInput() {
-          document.getElementsByName('display').value= document.getElementsByName('name').value;
-        }
-      </script>
     </form>
     </div>
 
@@ -66,11 +60,13 @@
         <!-- <input type ="text" name="display" id="display"> -->
         <!-- trying to write code to display review -->
         <h3>Marker Added:</h3>
-        <p>name: </p>
-        <p>x-coordinate: </p>
-        <p>y-coordinate: </p>
-        <p>rating: </p>
-        <p>description: </p>
+        <p id="displayName">Name: </p>
+        <p id="displayX">X-Coordinate: </p>
+        <p id="displayY">Y-Coordinate: </p>
+        <p id="displayRating">Rating: </p>
+        <p id="displayFreePaid">Free or Paid: </p>
+        <p id="displayDriveHike">Drive or Hike: </p>
+        <p id="displayDesc">Description: </p>
       </div>
       <ion-grid>
         <ion-row>
