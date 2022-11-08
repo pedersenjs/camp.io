@@ -22,19 +22,19 @@
     <div class='child'>
     <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)">
     <!-- <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)" action="http://localhost:8100/tabs/tab2" method="POST"> -->
-      <label for="name">Name:</label>
-      <input type="textbox" name="name" id="name" ngModel/><br>
-      <label for="location">X-coordinate:</label>
+      <label for="name">Name: </label>
+      <input type="text" name="name" id="name" ngModel/><br>
+      <label for="location">X-coordinate: </label>
       <input type="text" name="x-coordinate" id="x-coordinate" ngModel/><br>
-      <label for="location">Y-coordinate:</label>
-      <input type="text" name="y-coordinate" id="coordinate" ngModel/><br>
-      <label for="rating">Rating Out of 5:  </label>
+      <label for="location">Y-coordinate: </label>
+      <input type="text" name="y-coordinate" id="y-coordinate" ngModel/><br>
+      <label for="rating">Star Rating Out of 5
       <span class="fa fa-star checked"></span>
       <span class="fa fa-star checked"></span>
       <span class="fa fa-star checked"></span>
       <span class="fa fa-star"></span>
-      <span class="fa fa-star"></span>
-      <input type="text" name="rating" id="coordinate"  ngModel/><br>
+      <span class="fa fa-star"></span>: </label>
+      <input type="text" name="rating" id="rating"  ngModel/><br>
       <!-- paid or free -->
       <input type="radio" value="Free" id="free" name="paidOrFree" ngModel>
       <label for="free">Free </label>
@@ -45,6 +45,15 @@
       <label for="drive">Drive To </label>
       <input type="radio" value ="Hike" id="hike" name="hikeOrDrive" ngModel>
       <label for="hike">Hike To</label><br>
+      <label for="service">Cell Service Bars Out of 5
+      <span class="fa fa-signal"></span>: </label>
+      <input type="text" name="service" id="service"  ngModel/><br>
+      <input type="radio" value ="AT&T" id="att" name="provider" ngModel>
+      <label for="att">AT&T </label>
+      <input type="radio" value ="Verizon" id="ver" name="provider" ngModel>
+      <label for="ver">Verizon </label>
+      <input type="radio" value ="Other" id="oth" name="provider" ngModel>
+      <label for="oth">Other </label><br>
 
       <!-- Helpful review form functionality https://www.w3schools.com/howto/howto_css_user_rating.asp    -->
       <label for="description">Description:</label><br>
@@ -66,6 +75,7 @@
         <p id="displayRating">Rating: </p>
         <p id="displayFreePaid">Free or Paid: </p>
         <p id="displayDriveHike">Drive or Hike: </p>
+        <p id="displayService">Cell Service: </p>
         <p id="displayDesc">Description: </p>
       </div>
       <ion-grid>

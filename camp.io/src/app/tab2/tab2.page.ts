@@ -27,6 +27,9 @@ export class Tab2Page {
   photo="";
   freeOrPaid="";
   driveOrHike="";
+  service = 0;
+  provider = "";
+
   constructor(public photoService: PhotoService) { }
 
   greenDriveIcon = L.icon({
@@ -88,6 +91,9 @@ export class Tab2Page {
     this.description=form.value.description;
     this.freeOrPaid = form.controls['paidOrFree'].value;
     this.driveOrHike = form.controls['hikeOrDrive'].value;
+    this.service = form.value.service;
+    this.provider = form.controls['provider'].value;
+
     // console.log(this.freeOrPaid);
 
     // var firefoxIcon = L.icon({
@@ -127,6 +133,7 @@ export class Tab2Page {
       // L.marker([this.xinputValue, this.yinputValue], {icon: firefoxIcon}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
+        "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " " + this.provider + "<br>" +
         // "Description: " + this.description + "<img src='" + this.photo+"' />")//just want it to wrok but it wont
         "Description: " + this.description)
         //  console.log(this.photo)
@@ -136,6 +143,7 @@ export class Tab2Page {
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span><br>" +
+        "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Description: " + this.description)
     }
 
@@ -146,6 +154,7 @@ export class Tab2Page {
         "<span class=\"fa fa-star checked \"></span>" +
         // <span class=\"fa fa-star checked\"></span>
         "<span class=\"fa fa-star\"></span><br>"  +
+        "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Description: " + this.description)
     }
 
@@ -156,6 +165,7 @@ export class Tab2Page {
         "<span class=\"fa fa-star checked \"></span>" +
         "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star\"></span><br>"  +
+        "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Description: " + this.description)
     }
 
@@ -167,15 +177,18 @@ export class Tab2Page {
         "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star\"></span>"  +
         "<span class=\"fa fa-star\"></span><br>"  +
+        "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Description: " + this.description)
     }
 
+    this.clearHTML();
     document.getElementById('displayName').innerHTML += this.locationname;
     document.getElementById('displayX').innerHTML += this.xinputValue;
     document.getElementById('displayY').innerHTML += this.yinputValue;
     document.getElementById('displayRating').innerHTML += this.rating;
     document.getElementById('displayFreePaid').innerHTML += this.freeOrPaid;
     document.getElementById('displayDriveHike').innerHTML += this.driveOrHike;
+    document.getElementById('displayService').innerHTML += (this.service + this.provider);
     document.getElementById('displayDesc').innerHTML += this.description;
   }
 
@@ -236,5 +249,16 @@ export class Tab2Page {
     setTimeout(() => {
       this.map2.invalidateSize();
     }, 0);
+  }
+
+  clearHTML() {
+    document.getElementById('displayName').innerHTML = "Name: ";
+    document.getElementById('displayX').innerHTML = "X-Coordinate: ";
+    document.getElementById('displayY').innerHTML = "Y-Coordinate: ";
+    document.getElementById('displayRating').innerHTML = "Rating: ";
+    document.getElementById('displayFreePaid').innerHTML = "Free or Paid: ";
+    document.getElementById('displayDriveHike').innerHTML = "Drive or Hike: ";
+    document.getElementById('displayService').innerHTML = "Cell Service: ";
+    document.getElementById('displayDesc').innerHTML = "Description: ";
   }
 }

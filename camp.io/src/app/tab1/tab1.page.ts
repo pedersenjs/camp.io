@@ -124,12 +124,6 @@ export class Tab1Page {
     // Working on potential information popup which can reroute to campsite page.
     //.on('click', () => this.router.navigateByUrl('/tab3'))
 
-    //LOOK AT IMPORTS FOR TYPESCRIPT - Working on search bar functionality
-    //L.Control.geocoder().addTo(this.map);
-
-    //var searchLayer = L.layerGroup().addTo(this.map);
-    //this.map.addControl( new L.Control.Search({layer: searchLayer}) );
-
     setTimeout(() => {
       this.map.invalidateSize();
     }, 0);
