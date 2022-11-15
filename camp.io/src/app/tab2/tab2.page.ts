@@ -6,6 +6,9 @@ import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { GeoSearchControl } from 'leaflet-geosearch';
 import { PhotoService } from '../services/photo.service';
 import "leaflet.locatecontrol";
+// import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+
 const provider = new OpenStreetMapProvider();
 @Component({
   selector: 'app-tab2',
@@ -166,6 +169,7 @@ export class Tab2Page {
         "<span class=\"fa fa-star\"></span><br>"  +
         "Description: " + this.description)
     }
+    // this.http.post()
   }
 
   //code that is executed when the website is initialized
