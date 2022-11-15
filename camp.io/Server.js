@@ -15,17 +15,16 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         const campsiteReviews = db.collection('reviews')
         app.set('view engine', 'ejs')
         app.use(bodyParser.urlencoded({ extended: true}))
-        console.log("make it to line 19")
         app.get('/', (req,res) => {
             console.log("no issue here")
             // console.log("dirname " + __dirname)
             //dirname C:\Users\jenp2\camp.io\camp.io\camp.io
-            res.sendFile(__dirname + '/tabs/tab2')
+            res.sendFile(__dirname + '/src/app/tab2')
         })
 
         // console.log("req " + req.body)
         // console.log("res " + res)
-        app.post('/api/reviews', (req, res) => {
+        app.post('/reviews', (req, res) => {
             console.log("made it to reviews")
             campsiteReviews.insertOne(req)
             .then(result => {
