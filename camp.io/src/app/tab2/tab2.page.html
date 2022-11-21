@@ -54,8 +54,18 @@
       <label for="ver">Verizon </label>
       <input type="radio" value ="Other" id="oth" name="provider" ngModel>
       <label for="oth">Other </label><br>
-
-      <!-- Helpful review form functionality https://www.w3schools.com/howto/howto_css_user_rating.asp    -->
+      <label for="amenities">Amenities: </label><br>
+      <input type="checkbox" id="restrooms" name="restrooms" [(ngModel)]="restroomsCheck">
+      <label for="restrooms">Restrooms </label>
+      <input type="checkbox" id="grills" name="amenities" [(ngModel)]="grillsCheck">
+      <label for="grills">Grills </label>
+      <input type="checkbox" id="tables" name="amenities" [(ngModel)]="tablesCheck">
+      <label for="tables">Tables </label><br>
+      <input type="checkbox" id="showers" name="amenities" [(ngModel)]="showersCheck">
+      <label for="showers">Showers </label>
+      <input type="checkbox" id="trashcans" name="amenities" [(ngModel)]="trashcansCheck">
+      <label for="trashcans">Trashcans</label><br>
+      <!-- Helpful review form functionality https://www.w3schools.com/howto/howto_css_user_rating.asp -->
       <label for="description">Description:</label><br>
       <textarea type="text" name="description"  cols="30" rows="5" id="coordinate" ngModel></textarea><br>
       <button name="photo" (click)="addPhotoToGallery()">Add Photo</button><br> <!-- The addPhotoToGallery() calls the photo service and adds photo to gallery-->
@@ -76,6 +86,7 @@
         <p id="displayFreePaid">Free or Paid: </p>
         <p id="displayDriveHike">Drive or Hike: </p>
         <p id="displayService">Cell Service: </p>
+        <p id="displayAmenities">Amenities: </p>
         <p id="displayDesc">Description: </p>
       </div>
       <ion-grid>

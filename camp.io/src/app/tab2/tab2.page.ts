@@ -29,6 +29,16 @@ export class Tab2Page {
   driveOrHike="";
   service = 0;
   provider = "";
+  restroomsCheck: boolean = false;
+  grillsCheck: boolean = false;
+  tablesCheck: boolean = false;
+  showersCheck: boolean = false;
+  trashcansCheck: boolean = false;
+  restrooms = null;
+  grills = null;
+  tables = null;
+  showers = null;
+  trashcans = null;
 
   constructor(public photoService: PhotoService) { }
 
@@ -93,24 +103,17 @@ export class Tab2Page {
     this.driveOrHike = form.controls['hikeOrDrive'].value;
     this.service = form.value.service;
     this.provider = form.controls['provider'].value;
-
-    // console.log(this.freeOrPaid);
-
-    // var firefoxIcon = L.icon({
-    //   // iconUrl: 'http://joshuafrazier.info/images/firefox.svg',
-    //   iconUrl: '/camp.io/src/app/tab2/howardsknob.jpg',
-    //   iconSize: [38, 95], // size of the icon
-    //   popupAnchor: [0,-15]
-    //   });
-          // create popup contents
-    // var customPopup = "Mozilla Toronto Offices<br/><img src='http://joshuafrazier.info/images/maptime.gif' alt='maptime logo gif' width='350px'/>";
-
-    // // specify popup options
-    // var customOptions =
-    //     {
-    //     'maxWidth': '500',
-    //     'className' : 'custom'
-    //     }
+    let amenities = '';
+    if (this.restroomsCheck) {this.restrooms = 'restrooms';
+                           amenities += this.restrooms;}
+    if (this.grillsCheck) {this.grills = 'grills';
+                           amenities += ', ' + this.grills;}
+    if (this.tablesCheck) {this.tables = 'tables';
+                           amenities += ', ' + this.tables;}
+    if (this.showersCheck) {this.showers = 'showers';
+                           amenities += ', ' + this.showers;}
+    if (this.trashcansCheck) {this.trashcans = 'trashcans';
+                           amenities += ', ' + this.trashcans;}
 
     var iconVariable = this.greenDriveIcon;
     if (this.driveOrHike == "Hike"){
@@ -135,8 +138,8 @@ export class Tab2Page {
         "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " " + this.provider + "<br>" +
         // "Description: " + this.description + "<img src='" + this.photo+"' />")//just want it to wrok but it wont
+        "Amenities: " + amenities + "<br>" +
         "Description: " + this.description)
-        //  console.log(this.photo)
     }
     if (this.rating == 2) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
@@ -144,6 +147,7 @@ export class Tab2Page {
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span><br>" +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
+        "Amenities: " + amenities + "<br>" +
         "Description: " + this.description)
     }
 
@@ -152,9 +156,9 @@ export class Tab2Page {
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
-        // <span class=\"fa fa-star checked\"></span>
         "<span class=\"fa fa-star\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
+        "Amenities: " + amenities + "<br>" +
         "Description: " + this.description)
     }
 
@@ -166,6 +170,7 @@ export class Tab2Page {
         "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
+        "Amenities: " + amenities + "<br>" +
         "Description: " + this.description)
     }
 
@@ -178,6 +183,7 @@ export class Tab2Page {
         "<span class=\"fa fa-star\"></span>"  +
         "<span class=\"fa fa-star\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
+        "Amenities: " + amenities + "<br>" +
         "Description: " + this.description)
     }
 
@@ -189,6 +195,7 @@ export class Tab2Page {
     document.getElementById('displayFreePaid').innerHTML += this.freeOrPaid;
     document.getElementById('displayDriveHike').innerHTML += this.driveOrHike;
     document.getElementById('displayService').innerHTML += (this.service + this.provider);
+    document.getElementById('displayAmenities').innerHTML += amenities;
     document.getElementById('displayDesc').innerHTML += this.description;
   }
 
@@ -222,29 +229,6 @@ export class Tab2Page {
     "<span class=\"fa fa-star\"></span><br>"  +
     "Description: This is our university that we attend. I one time took a nap on Sanford Mall for a few hours between classes."
     + " I had a dream Yosef threw me a birthday party but other than that it was nice. would come back");
-    // L.marker([36.215851,-81.684765], {title:"Appalachian State University"}).addTo(this.map)
-    // .bindPopup('Appalachian State University: <br> Elevation 3,333 ft')
-
-    L.marker([36.10937607492409,-81.80272711107834], {title:"Briar Patch Campsite", icon: this.greenBackIcon}).addTo(this.map2)
-    // .bindPopup('Briar Patch Campsite: <br> Elevation 4,396 ft')
-    .bindPopup('Briar Patch Campsite:<br>' +
-    "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
-    "<span class='fa fa-star'></span>" +
-    "<span class=\"fa fa-star checked\"></span>" +
-    "<span class=\"fa fa-star\"></span>"  +
-    "<span class=\"fa fa-star\"></span><br>"  +
-    "Description: Super cool campsite off the beaten path. A few mile hike in with steep elevation gain "
-    + "No one around for miles at night. Except for the bears");
-
-    L.marker([36.120648650031036,-81.79391265388594], {title:"Refuge Campsite", icon: this.redBackIcon}).addTo(this.map2)
-    //36.120648650031036, -81.79391265388594
-    // .bindPopup('Refuge Campsite: <br> Elevation 4,396 ft')
-    .bindPopup('Refuge Campsite:<br>' +
-    "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
-    "<span class='fa fa-star'></span>" +
-    "<span class=\"fa fa-star checked\"></span>" +
-    "<span class=\"fa fa-star\"></span><br>"  +
-    "Description: Not going to lie here, did get pretty scared at night. There were a lot of owls hooting and no one else around.");
 
     setTimeout(() => {
       this.map2.invalidateSize();
@@ -259,6 +243,7 @@ export class Tab2Page {
     document.getElementById('displayFreePaid').innerHTML = "Free or Paid: ";
     document.getElementById('displayDriveHike').innerHTML = "Drive or Hike: ";
     document.getElementById('displayService').innerHTML = "Cell Service: ";
+    document.getElementById('displayAmenities').innerHTML = "Ammenities: "
     document.getElementById('displayDesc').innerHTML = "Description: ";
   }
 }
