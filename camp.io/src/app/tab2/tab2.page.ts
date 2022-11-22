@@ -34,11 +34,21 @@ export class Tab2Page {
   tablesCheck: boolean = false;
   showersCheck: boolean = false;
   trashcansCheck: boolean = false;
+  bearsCheck: boolean = false;
+  insectsCheck: boolean = false;
+  terrainCheck: boolean = false;
+  fireCheck: boolean = false;
+  floodingCheck: boolean = false;
   restrooms = null;
   grills = null;
   tables = null;
   showers = null;
   trashcans = null;
+  bears = null;
+  insects = null;
+  terrain = null;
+  fire = null;
+  flooding = null;
 
   constructor(public photoService: PhotoService) { }
 
@@ -114,6 +124,17 @@ export class Tab2Page {
                            amenities += ', ' + this.showers;}
     if (this.trashcansCheck) {this.trashcans = 'trashcans';
                            amenities += ', ' + this.trashcans;}
+    let hazards = '';
+    if (this.bearsCheck) {this.bears = 'bears';
+                           hazards += this.bears;}
+    if (this.insectsCheck) {this.insects = 'insects';
+                           hazards += ', ' + this.insects;}
+    if (this.terrainCheck) {this.terrain = 'terrain';
+                           hazards += ', ' + this.terrain;}
+    if (this.fireCheck) {this.fire = 'fire risk';
+                           hazards += ', ' + this.fire;}
+    if (this.floodingCheck) {this.flooding = 'flooding';
+                           hazards += ', ' + this.flooding;}
 
     var iconVariable = this.greenDriveIcon;
     if (this.driveOrHike == "Hike"){
@@ -139,6 +160,7 @@ export class Tab2Page {
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " " + this.provider + "<br>" +
         // "Description: " + this.description + "<img src='" + this.photo+"' />")//just want it to wrok but it wont
         "Amenities: " + amenities + "<br>" +
+        "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
     }
     if (this.rating == 2) {
@@ -148,6 +170,7 @@ export class Tab2Page {
         "<span class=\"fa fa-star checked \"></span><br>" +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Amenities: " + amenities + "<br>" +
+        "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
     }
 
@@ -159,6 +182,7 @@ export class Tab2Page {
         "<span class=\"fa fa-star\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Amenities: " + amenities + "<br>" +
+        "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
     }
 
@@ -171,6 +195,7 @@ export class Tab2Page {
         "<span class=\"fa fa-star\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Amenities: " + amenities + "<br>" +
+        "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
     }
 
@@ -184,6 +209,7 @@ export class Tab2Page {
         "<span class=\"fa fa-star\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Amenities: " + amenities + "<br>" +
+        "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
     }
 
@@ -194,8 +220,9 @@ export class Tab2Page {
     document.getElementById('displayRating').innerHTML += this.rating;
     document.getElementById('displayFreePaid').innerHTML += this.freeOrPaid;
     document.getElementById('displayDriveHike').innerHTML += this.driveOrHike;
-    document.getElementById('displayService').innerHTML += (this.service + this.provider);
+    document.getElementById('displayService').innerHTML += (this.service + " Bars " + this.provider);
     document.getElementById('displayAmenities').innerHTML += amenities;
+    document.getElementById('displayHazards').innerHTML += hazards;
     document.getElementById('displayDesc').innerHTML += this.description;
   }
 
@@ -244,6 +271,7 @@ export class Tab2Page {
     document.getElementById('displayDriveHike').innerHTML = "Drive or Hike: ";
     document.getElementById('displayService').innerHTML = "Cell Service: ";
     document.getElementById('displayAmenities').innerHTML = "Ammenities: "
+    document.getElementById('displayHazards').innerHTML = "Hazards: "
     document.getElementById('displayDesc').innerHTML = "Description: ";
   }
 }

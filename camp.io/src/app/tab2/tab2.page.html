@@ -65,6 +65,17 @@
       <label for="showers">Showers </label>
       <input type="checkbox" id="trashcans" name="amenities" [(ngModel)]="trashcansCheck">
       <label for="trashcans">Trashcans</label><br>
+      <label for="hazards">Hazards: </label><br>
+      <input type="checkbox" id="bears" name="hazards" [(ngModel)]="bearsCheck">
+      <label for="restrooms">Bears </label>
+      <input type="checkbox" id="insects" name="hazards" [(ngModel)]="insectsCheck">
+      <label for="grills">Insects </label>
+      <input type="checkbox" id="terrain" name="hazards" [(ngModel)]="terrainCheck">
+      <label for="tables">Terrain </label><br>
+      <input type="checkbox" id="fire" name="hazards" [(ngModel)]="fireCheck">
+      <label for="showers">Fire Risk </label>
+      <input type="checkbox" id="flooding" name="hazards" [(ngModel)]="floodingCheck">
+      <label for="trashcans">Flooding</label><br>
       <!-- Helpful review form functionality https://www.w3schools.com/howto/howto_css_user_rating.asp -->
       <label for="description">Description:</label><br>
       <textarea type="text" name="description"  cols="30" rows="5" id="coordinate" ngModel></textarea><br>
@@ -87,6 +98,7 @@
         <p id="displayDriveHike">Drive or Hike: </p>
         <p id="displayService">Cell Service: </p>
         <p id="displayAmenities">Amenities: </p>
+        <p id="displayHazards">Hazards: </p>
         <p id="displayDesc">Description: </p>
       </div>
       <ion-grid>
