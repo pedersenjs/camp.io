@@ -17,6 +17,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <ion-content [fullscreen]="true" padding class="background">
   <div id="map2"></div>
+  <div class="legend">
+    <label for="greendef" class="imglabel">Free Drive-up</label>
+    <img src="../../assets/green_default1.png" class="pins">
+    <label for="reddef" class="imglabel">Paid Drive-up</label>
+    <img src="../../assets/red_default1.png" class="pins">
+    <label for="greenhex" class="imglabel">Free Hike-to</label>
+    <img src="../../assets/green_hex1.png" class="pins">
+    <label for="redhex" class="imglabel">Paid Hike-to</label>
+    <img src="../../assets/red_hex1.png" class="pins">
+  </div>
   <!-- this is the code for the form to leave a review -->
   <div class ='parent'>
     <div class='child'>
@@ -107,7 +117,8 @@
             <ion-img [src]="photo.webviewPath"></ion-img>
           </ion-col>
         </ion-row>
-      </ion-grid></div>
+      </ion-grid>
+    </div>
   </div>
 </ion-content>
 

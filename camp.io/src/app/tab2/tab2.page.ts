@@ -29,21 +29,25 @@ export class Tab2Page {
   driveOrHike="";
   service = 0;
   provider = "";
+
   restroomsCheck: boolean = false;
   grillsCheck: boolean = false;
   tablesCheck: boolean = false;
   showersCheck: boolean = false;
   trashcansCheck: boolean = false;
+
   bearsCheck: boolean = false;
   insectsCheck: boolean = false;
   terrainCheck: boolean = false;
   fireCheck: boolean = false;
   floodingCheck: boolean = false;
+
   restrooms = null;
   grills = null;
   tables = null;
   showers = null;
   trashcans = null;
+
   bears = null;
   insects = null;
   terrain = null;
@@ -113,6 +117,7 @@ export class Tab2Page {
     this.driveOrHike = form.controls['hikeOrDrive'].value;
     this.service = form.value.service;
     this.provider = form.controls['provider'].value;
+
     let amenities = '';
     if (this.restroomsCheck) {this.restrooms = 'restrooms';
                            amenities += this.restrooms;}
@@ -124,6 +129,7 @@ export class Tab2Page {
                            amenities += ', ' + this.showers;}
     if (this.trashcansCheck) {this.trashcans = 'trashcans';
                            amenities += ', ' + this.trashcans;}
+
     let hazards = '';
     if (this.bearsCheck) {this.bears = 'bears';
                            hazards += this.bears;}
@@ -163,7 +169,7 @@ export class Tab2Page {
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
     }
-    if (this.rating == 2) {
+    else if (this.rating == 2) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
@@ -173,8 +179,7 @@ export class Tab2Page {
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
     }
-
-    if (this.rating == 3) {
+    else if (this.rating == 3) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
@@ -185,8 +190,7 @@ export class Tab2Page {
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
     }
-
-    if (this.rating == 4) {
+    else if (this.rating == 4) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
@@ -198,8 +202,7 @@ export class Tab2Page {
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
     }
-
-    if (this.rating == 5) {
+    else if (this.rating == 5) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +

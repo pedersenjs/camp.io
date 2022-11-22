@@ -12,10 +12,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" padding class="background">
-  <div id="map"></div>
-  <img alt="logo" src="../../assets/icon/favicon.png" >
+  <img alt="logo" id="logo" src="../../assets/icon/favicon.png" >
   <p>Camp.io is a web application which tracks campsites around the United States! On this main page you can search up campsites near you and plan your camping trip using the site details.
      Click on the marker to show information for the campsite! Don't see the campsite you're looking for? Add it to our map using the menu, and going to Add Location.
      All you need to add a location is the name, coordinates, and any other useful information you have that might make camping there easier!
      Got a bunch of campsites you like? Add them a list by going to the List menu. Thank you for using and supporting Camp.io!</p>
+  <div id="map"></div>
+  <div class="legend">
+    <label for="greendef" class="imglabel">Free Drive-up</label>
+    <img src="../../assets/green_default1.png" class="pins">
+    <label for="reddef" class="imglabel">Paid Drive-up</label>
+    <img src="../../assets/red_default1.png" class="pins">
+    <label for="greenhex" class="imglabel">Free Hike-to</label>
+    <img src="../../assets/green_hex1.png" class="pins">
+    <label for="redhex" class="imglabel">Paid Hike-to</label>
+    <img src="../../assets/red_hex1.png" class="pins">
+  </div>
 </ion-content>
