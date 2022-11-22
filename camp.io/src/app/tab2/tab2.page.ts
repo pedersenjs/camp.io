@@ -273,7 +273,7 @@ export class Tab2Page {
     document.getElementById('displayFreePaid').innerHTML = "Free or Paid: ";
     document.getElementById('displayDriveHike').innerHTML = "Drive or Hike: ";
     document.getElementById('displayService').innerHTML = "Cell Service: ";
-    document.getElementById('displayAmenities').innerHTML = "Ammenities: "
+    document.getElementById('displayAmenities').innerHTML = "Amenities: "
     document.getElementById('displayHazards').innerHTML = "Hazards: "
     document.getElementById('displayDesc').innerHTML = "Description: ";
   }
