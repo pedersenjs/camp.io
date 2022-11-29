@@ -7,6 +7,7 @@ import { GeoSearchControl } from 'leaflet-geosearch';
 import { PhotoService } from '../services/photo.service';
 import "leaflet.locatecontrol";
 // import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
 
 
 const provider = new OpenStreetMapProvider();
@@ -29,7 +30,7 @@ export class Tab2Page {
   photo="";
   freeOrPaid="";
   driveOrHike="";
-  constructor(public photoService: PhotoService) { }
+  constructor(private http: Http) { }//took out photo service
 
   greenDriveIcon = L.icon({
     iconUrl: '../../assets/green_default1.png',
@@ -76,7 +77,7 @@ export class Tab2Page {
   });
 
   addPhotoToGallery(){
-    this.photoService.addNewToGallery();
+    // this.photoService.addNewToGallery();
   }
 
   //This code below is to add a new location maker
@@ -169,7 +170,7 @@ export class Tab2Page {
         "<span class=\"fa fa-star\"></span><br>"  +
         "Description: " + this.description)
     }
-    // this.http.post()
+    this.http.post('http://localhost:3000/reviews', "Test location");
   }
 
   //code that is executed when the website is initialized
