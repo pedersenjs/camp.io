@@ -2,29 +2,21 @@ ion-content {
   --background: url('../../assets/dark_green_top.jpg') no-repeat center center/ cover;
 }
 
-mark {
-  background-color: white;
-  color: black;
-}
-
-p {
-  margin-left: 200px;
-  margin-top: 5px;
-  color: #3AFFA1;
-  background-color: #0B1121;
-  width: 80%;
-  padding: 10px;
-  border: 3px solid #3AFFA1;
+#map {
+  margin: 0 auto;
+  min-height: 80%;
+  width: 98%;
+  border: 5px solid #3AFFA1;
   border-radius: 25px;
 }
 
 .legend {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  margin: 10px;
+  margin: 3% auto;
   color: #3AFFA1;
   background-color: #0B1121;
-  width: 30%;
+  width: 60%;
   padding: 10px;
   border: 3px solid #3AFFA1;
   border-radius: 25px;
@@ -35,25 +27,33 @@ p {
 .pins {
   width: 25px;
   height: 35px;
+  margin: 5px;
+}
+
+label {
+  margin: 3px;
+}
+
+.about {
+  margin: 5px auto;
+  border: 3px solid #3AFFA1;
+  background-color: #0B1121;
+  border-radius: 25px;
+  width: 85%;
+  color: #3AFFA1;
+  padding: 10px;
 }
 
 #logo {
   height: 100px;
-  border: 3px solid #3AFFA1;
+  border: 4px solid #3AFFA1;
   border-radius: 25px;
-  margin-left: 95px;
+  margin-right: 10px;
   float: left;
   width: 100px;
 }
 
-#map {
-  margin: 0 auto;
-  min-height: 80%;
-  width: 80%;
-  border: 5px solid #3AFFA1;
-  border-radius: 25px;
-}
-
-.checked {
-  color: orange;
+p {
+  margin-top: 1px;
+  margin-left: 2px;
 }

@@ -2,15 +2,10 @@ ion-content {
   --background: url('../../assets/dark_purple_top.jpg') no-repeat center center/ cover;
 }
 
-mark {
-  background-color: white;
-  color: black;
-}
-
 #map2 {
   margin: 0 auto;
   min-height: 80%;
-  width: 80%;
+  width: 98%;
   border: 5px solid rgb(154,55,247);
   border-radius: 25px;
 }
@@ -18,10 +13,10 @@ mark {
 .legend {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  margin: 10px;
+  margin: 3% auto;
   color: rgb(154,55,247);
   background-color: #0B1121;
-  width: 30%;
+  width: 60%;
   padding: 10px;
   border: 3px solid rgb(154,55,247);
   border-radius: 25px;
@@ -32,46 +27,59 @@ mark {
 .pins {
   width: 25px;
   height: 35px;
+  margin: 5px;
 }
 
-#location{
-  width: 100px;
+.imglabel {
+  margin: 3px;
 }
 
-// form {
-//   margin: 8px auto;
-//   color: rgb(154,55,247);
-//   background-color: #0B1121;
-//   width: 50%;
-//   padding: 10px;
-//   border: 3px solid rgb(154,55,247);
-//   border-radius: 25px;
-// }
-
-.checked {
-  color: orange;
-}
-
-label {
-  font-size: 16px;
-}
-
-.parent {
-  // border: 1px solid black;
-  // margin: 1rem;
-  // padding: 2rem 2rem;
-  text-align: center;
-}
 .child {
-  // border: 1px solid red;
-  display: inline-block;
   padding: 1rem 1rem;
   vertical-align: middle;
-  margin: 8px;
+  margin: 8px auto;
   color: rgb(154,55,247);
   background-color: #0B1121;
-  width: 30%;
+  width: 83%;
   padding: 10px;
   border: 3px solid rgb(154,55,247);
   border-radius: 25px;
+  text-align: center;
+}
+
+input {
+  width: auto;
+  margin-bottom: 5px;
+  padding: 3px 12px;
+  line-height: 1.3;
+  background-color: #eee;
+  border: 1px solid rgb(154,55,247);
+  border-radius: 4px;
+}
+
+fieldset {
+  margin-top: 3px;
+  border: 1px solid rgb(154,55,247);
+  border-radius: 5px;
+}
+
+textarea {
+  width: auto;
+  height: 100px;
+  padding: 3px 12px;
+  line-height: 1.3;
+  background-color: #eee;
+  border: 1px solid rgb(154,55,247);
+  border-radius: 4px;
+}
+
+button {
+  color: #fff;
+  background-color: rgb(154,55,247);
+  padding: 6px 12px;
+  margin-top: 5px;
+  text-align: center;
+  width: auto;
+  cursor: pointer;
+  border-radius: 4px;
 }

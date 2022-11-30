@@ -160,28 +160,30 @@ export class Tab2Page {
 
     if (this.rating == 1) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
-      // L.marker([this.xinputValue, this.yinputValue], {icon: firefoxIcon}).addTo(this.map2)
-        .bindPopup(this.locationname + "<br>" +
+        .bindPopup(this.locationname + " -<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
-        "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " " + this.provider + "<br>" +
-        // "Description: " + this.description + "<img src='" + this.photo+"' />")//just want it to wrok but it wont
+        "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
+        // "Description: " + this.description + "<img src='" + this.photo+"' />") //just want it to work but it wont
         "Amenities: " + amenities + "<br>" +
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
+      alert("Location Pin Added Successfully!");
+
     }
     else if (this.rating == 2) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
-        .bindPopup(this.locationname + "<br>" +
+        .bindPopup(this.locationname + " -<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span><br>" +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Amenities: " + amenities + "<br>" +
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
+      alert("Location Pin Added Successfully!");
     }
     else if (this.rating == 3) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
-        .bindPopup(this.locationname + "<br>" +
+        .bindPopup(this.locationname + " -<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
         "<span class=\"fa fa-star\"></span><br>"  +
@@ -189,10 +191,11 @@ export class Tab2Page {
         "Amenities: " + amenities + "<br>" +
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
+      alert("Location Pin Added Successfully!");
     }
     else if (this.rating == 4) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
-        .bindPopup(this.locationname + "<br>" +
+        .bindPopup(this.locationname + " -<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
         "<span class=\"fa fa-star checked\"></span>" +
@@ -201,10 +204,11 @@ export class Tab2Page {
         "Amenities: " + amenities + "<br>" +
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
+      alert("Location Pin Added Successfully!");
     }
     else if (this.rating == 5) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
-        .bindPopup(this.locationname + "<br>" +
+        .bindPopup(this.locationname + " -<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
         "<span class=\"fa fa-star checked\"></span>" +
@@ -214,6 +218,7 @@ export class Tab2Page {
         "Amenities: " + amenities + "<br>" +
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
+      alert("Location Pin Added Successfully!");
     }
 
     this.clearHTML();
@@ -223,7 +228,8 @@ export class Tab2Page {
     document.getElementById('displayRating').innerHTML += this.rating;
     document.getElementById('displayFreePaid').innerHTML += this.freeOrPaid;
     document.getElementById('displayDriveHike').innerHTML += this.driveOrHike;
-    document.getElementById('displayService').innerHTML += (this.service + " Bars " + this.provider);
+    if (this.service > 0 && this.service <= 5)
+      document.getElementById('displayService').innerHTML += (this.service + " Bars " + this.provider);
     document.getElementById('displayAmenities').innerHTML += amenities;
     document.getElementById('displayHazards').innerHTML += hazards;
     document.getElementById('displayDesc').innerHTML += this.description;
