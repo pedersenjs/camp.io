@@ -100,8 +100,11 @@ export class Tab2Page {
     shadowSize: [ 36, 16 ]
   });
 
+  isVisible = false;
+
   addPhotoToGallery(){
     this.photoService.addNewToGallery();
+    this.isVisible = true;
   }
 
   //This code below is to add a new location maker
@@ -168,7 +171,7 @@ export class Tab2Page {
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
       alert("Location Pin Added Successfully!");
-
+      this.isVisible = true;
     }
     else if (this.rating == 2) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
@@ -180,6 +183,7 @@ export class Tab2Page {
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
       alert("Location Pin Added Successfully!");
+      this.isVisible = true;
     }
     else if (this.rating == 3) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
@@ -192,6 +196,7 @@ export class Tab2Page {
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
       alert("Location Pin Added Successfully!");
+      this.isVisible = true;
     }
     else if (this.rating == 4) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
@@ -205,6 +210,7 @@ export class Tab2Page {
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
       alert("Location Pin Added Successfully!");
+      this.isVisible = true;
     }
     else if (this.rating == 5) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
@@ -219,6 +225,7 @@ export class Tab2Page {
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
       alert("Location Pin Added Successfully!");
+      this.isVisible = true;
     }
 
     this.clearHTML();

@@ -40,13 +40,27 @@
         <input type="text" name="x-coordinate" id="x-coordinate" ngModel/><br>
         <label for="location">Y-coordinate: </label>
         <input type="text" name="y-coordinate" id="y-coordinate" ngModel/><br>
-        <label for="rating">Star Rating Out of 5
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>: </label>
-        <input type="text" name="rating" id="rating"  ngModel/><br>
+        <label for="rating">Rating Out of 5: </label><br>
+        <input type="radio" value="1" id="1" name="rating" ngModel>
+        <label for="free"><span class="fa fa-star"></span></label>
+        <input type="radio" value="2" id="2" name="rating" ngModel>
+        <label for="paid"><span class="fa fa-star"></span>
+          <span class="fa fa-star"></span></label>
+        <input type="radio" value="3" id="3" name="rating" ngModel>
+        <label for="paid"><span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span></label><br>
+        <input type="radio" value="4" id="4" name="rating" ngModel>
+        <label for="paid"><span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span></label>
+        <input type="radio" value="5" id="5" name="rating" ngModel>
+        <label for="paid"><span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span></label>
       </fieldset>
       <fieldset>
         <legend>Campsite Type</legend>
@@ -63,15 +77,27 @@
       </fieldset>
       <fieldset>
         <legend>Cell Service</legend>
-        <label for="service">Bars Out of 5
-        <span class="fa fa-signal"></span>: </label>
-        <input type="text" name="service" id="service"  ngModel/><br>
+        <label for="service">Bars of Service
+        <span class="fa fa-signal"></span>: </label><br>
+        <input type="radio" value="1" id="1" name="service" ngModel>
+        <label for="free">1 </label>
+        <input type="radio" value="2" id="2" name="service" ngModel>
+        <label for="free">2 </label>
+        <input type="radio" value="3" id="3" name="service" ngModel>
+        <label for="free">3 </label>
+        <input type="radio" value="4" id="4" name="service" ngModel>
+        <label for="free">4 </label>
+        <input type="radio" value="5" id="5" name="service" ngModel>
+        <label for="free">5</label><br>
+        <label for="service">Service Provider:</label><br>
         <input type="radio" value ="AT&T" id="att" name="provider" ngModel>
         <label for="att">AT&T </label>
         <input type="radio" value ="Verizon" id="ver" name="provider" ngModel>
         <label for="ver">Verizon </label>
+        <input type="radio" value ="T-Mobile" id="tmo" name="provider" ngModel>
+        <label for="tmo">T-Mobile </label><br>
         <input type="radio" value ="Other" id="oth" name="provider" ngModel>
-        <label for="oth">Other </label><br>
+        <label for="oth">Other </label>
       </fieldset>
       <fieldset>
         <legend>Amenities</legend>
@@ -109,7 +135,7 @@
     </form>
     </div>
 
-    <div class='child'>
+    <div class='child' [style.display]="isVisible ? 'block' : 'none'">
       <div>
         <!-- <input type ="text" name="display" id="display"> -->
         <h3>Marker Added:</h3>
