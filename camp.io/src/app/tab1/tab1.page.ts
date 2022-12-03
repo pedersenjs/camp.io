@@ -64,8 +64,8 @@ export class Tab1Page {
 
   ngOnInit() {
     this.map = L.map('map', {
-      center: [36.216536,-81.674616],
-      zoom: 13,
+      center: [37.090240, -95.712891],
+      zoom: 3,
       renderer: L.canvas(),
       //Attribution control for removing attribution data:
       // attributionControl: false

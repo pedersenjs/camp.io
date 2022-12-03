@@ -104,15 +104,15 @@ export class Tab2Page {
 
   addPhotoToGallery(){
     this.photoService.addNewToGallery();
-    this.isVisible = true;
+    alert('Adding photo to submission!');
   }
 
   //This code below is to add a new location maker
   //This link helped guide some parts, has useful tips https://stackoverflow.com/questions/41139546/angular2-ngsubmit-not-working
   addLocation(form: NgForm) {
     //code to get input from the form and store it in variables
-    this.xinputValue = form.value["x-coordinate"];
-    this.yinputValue = form.value["y-coordinate"];
+    this.xinputValue = parseFloat(document.getElementById('lat').getAttribute('value'));
+    this.yinputValue = parseFloat(document.getElementById('lon').getAttribute('value'));
     this.locationname = form.value.name;
     this.rating = form.value.rating;
     this.description=form.value.description;
@@ -172,6 +172,8 @@ export class Tab2Page {
         "Description: " + this.description)
       alert("Location Pin Added Successfully!");
       this.isVisible = true;
+      document.getElementById('map2').scrollIntoView();
+      this.map2.flyTo(new L.LatLng(this.xinputValue, this.yinputValue), 15);
     }
     else if (this.rating == 2) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
@@ -184,6 +186,8 @@ export class Tab2Page {
         "Description: " + this.description)
       alert("Location Pin Added Successfully!");
       this.isVisible = true;
+      document.getElementById('map2').scrollIntoView();
+      this.map2.flyTo(new L.LatLng(this.xinputValue, this.yinputValue), 15);
     }
     else if (this.rating == 3) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
@@ -197,6 +201,8 @@ export class Tab2Page {
         "Description: " + this.description)
       alert("Location Pin Added Successfully!");
       this.isVisible = true;
+      document.getElementById('map2').scrollIntoView();
+      this.map2.flyTo(new L.LatLng(this.xinputValue, this.yinputValue), 15);
     }
     else if (this.rating == 4) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
@@ -211,6 +217,8 @@ export class Tab2Page {
         "Description: " + this.description)
       alert("Location Pin Added Successfully!");
       this.isVisible = true;
+      document.getElementById('map2').scrollIntoView();
+      this.map2.flyTo(new L.LatLng(this.xinputValue, this.yinputValue), 15);
     }
     else if (this.rating == 5) {
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
@@ -226,6 +234,8 @@ export class Tab2Page {
         "Description: " + this.description)
       alert("Location Pin Added Successfully!");
       this.isVisible = true;
+      document.getElementById('map2').scrollIntoView();
+      this.map2.flyTo(new L.LatLng(this.xinputValue, this.yinputValue), 15);
     }
 
     this.clearHTML();
@@ -246,8 +256,8 @@ export class Tab2Page {
   ngOnInit() {
     //create the map object using the leaflet syntax
     this.map2 = L.map('map2', {
-      center: [36.21272, -81.67292],
-      zoom: 13,
+      center: [37.090240, -95.712891],
+      zoom: 3,
       renderer: L.canvas()
     })
 
@@ -255,6 +265,12 @@ export class Tab2Page {
       provider,
       style: 'bar',
     }))
+
+    this.map2.on("contextmenu", function (event) {
+      alert("Selected Coordinates: " + event.latlng.toString());
+      document.getElementById('lat').setAttribute("value", event.latlng.lat.toPrecision(8));
+      document.getElementById('lon').setAttribute("value", event.latlng.lng.toPrecision(8));
+    });
 
     L.control.locate().addTo(this.map2);
 

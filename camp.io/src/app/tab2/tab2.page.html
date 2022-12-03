@@ -37,9 +37,9 @@
         <label for="name">Name: </label>
         <input type="text" name="name" id="name" ngModel/><br>
         <label for="location">X-coordinate: </label>
-        <input type="text" name="x-coordinate" id="x-coordinate" ngModel/><br>
+        <input type="text" name="x-coordinate" id="lat" value="0"/><br>
         <label for="location">Y-coordinate: </label>
-        <input type="text" name="y-coordinate" id="y-coordinate" ngModel/><br>
+        <input type="text" name="y-coordinate" id="lon" value="0"/><br>
         <label for="rating">Rating Out of 5: </label><br>
         <input type="radio" value="1" id="1" name="rating" ngModel>
         <label for="free"><span class="fa fa-star"></span></label>
@@ -130,9 +130,9 @@
         <legend>Description</legend><br>
         <textarea type="text" name="description" id="coordinate" ngModel></textarea><br>
       </fieldset>
-      <button name="photo" (click)="addPhotoToGallery()"><span class="fa fa-camera">  </span> Add Photo</button><br> <!-- The addPhotoToGallery() calls the photo service and adds photo to gallery-->
       <button type="submit">Complete Review</button> <!-- The addPhotoToGallery() calls the photo service and adds photo to gallery-->
     </form>
+    <button name="photo" (click)="addPhotoToGallery()"><span class="fa fa-camera">  </span> Add Photo</button><br> <!-- The addPhotoToGallery() calls the photo service and adds photo to gallery-->
     </div>
 
     <div class='child' [style.display]="isVisible ? 'block' : 'none'">
