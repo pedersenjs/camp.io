@@ -6,6 +6,7 @@ import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { GeoSearchControl } from 'leaflet-geosearch';
 import { PhotoService } from '../services/photo.service';
 import 'leaflet.locatecontrol';
+
 const provider = new OpenStreetMapProvider();
 
 @Component({
@@ -254,6 +255,8 @@ export class Tab2Page {
 
   //code that is executed when the website is initialized
   ngOnInit() {
+    this.photoService.loadSaved();
+
     //create the map object using the leaflet syntax
     this.map2 = L.map('map2', {
       center: [37.090240, -95.712891],
@@ -267,7 +270,7 @@ export class Tab2Page {
     }))
 
     this.map2.on("contextmenu", function (event) {
-      alert("Selected Coordinates: " + event.latlng.toString());
+      alert("Autofilled Selected Coordinates: (" + event.latlng.lat.toPrecision(8) + ", " + event.latlng.lng.toPrecision(8) + ")");
       document.getElementById('lat').setAttribute("value", event.latlng.lat.toPrecision(8));
       document.getElementById('lon').setAttribute("value", event.latlng.lng.toPrecision(8));
     });
