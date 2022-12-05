@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-//import { FormBuilder } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import * as L from "leaflet";
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
@@ -18,9 +17,8 @@ const provider = new OpenStreetMapProvider();
 export class Tab2Page {
   // global map variable
   map2: L.Map
-  //global x input variable
+  //global variables that are filled in by user input form
   xinputValue = 0;
-  //global y input variable
   yinputValue = 0;
   rating = 0;
   locationname = "user input";
@@ -31,12 +29,14 @@ export class Tab2Page {
   service = 0;
   provider = "";
 
+  amenities = "";
   restroomsCheck: boolean = false;
   grillsCheck: boolean = false;
   tablesCheck: boolean = false;
   showersCheck: boolean = false;
   trashcansCheck: boolean = false;
 
+  hazards = "";
   bearsCheck: boolean = false;
   insectsCheck: boolean = false;
   terrainCheck: boolean = false;
@@ -60,10 +60,10 @@ export class Tab2Page {
 
   constructor(public photoService: PhotoService) { }
 
+  //Variable for the Free driveup campsite
   greenDriveIcon = L.icon({
     iconUrl: '../../assets/green_default1.png',
     shadowUrl: '../../assets/markers_shadow.png',
-
     iconSize: [ 30, 45 ],
     iconAnchor: [ 17, 42 ],
     popupAnchor: [ 1, -32 ],
@@ -71,10 +71,10 @@ export class Tab2Page {
     shadowSize: [ 36, 16 ]
   });
 
+  //Variable for the Paid driveup campsite
   redDriveIcon = L.icon({
     iconUrl: '../../assets/red_default1.png',
     shadowUrl: '../../assets/markers_shadow.png',
-
     iconSize: [ 30, 45 ],
     iconAnchor: [ 17, 42 ],
     popupAnchor: [ 1, -32 ],
@@ -82,10 +82,10 @@ export class Tab2Page {
     shadowSize: [ 36, 16 ]
   });
 
+  //Variable for the Free hike up campsite
   greenBackIcon = L.icon({
     iconUrl: '../../assets/green_hex1.png',
     shadowUrl: '../../assets/markers_shadow.png',
-
     iconSize: [ 30, 45 ],
     iconAnchor: [ 17, 42 ],
     popupAnchor: [ 1, -32 ],
@@ -93,10 +93,10 @@ export class Tab2Page {
     shadowSize: [ 36, 16 ]
   });
 
+  //Variable for the paid hike up campsite
   redBackIcon = L.icon({
     iconUrl: '../../assets/red_hex1.png',
     shadowUrl: '../../assets/markers_shadow.png',
-
     iconSize: [ 30, 45 ],
     iconAnchor: [ 17, 42 ],
     popupAnchor: [ 1, -32 ],
@@ -106,6 +106,7 @@ export class Tab2Page {
 
   isVisible = false;
 
+  //function to access the photo service and add a photo to the gallery
   addPhotoToGallery(){
     this.photoService.addNewToGallery();
     alert('Adding photo to submission!');
@@ -128,6 +129,7 @@ export class Tab2Page {
       }
     }
 
+    //this function saves a marker to local storage so it remains persistant on the browser
     saveMarkerToStorage(marker){
       marker.feature = {"type": "Feature",
       "properties": {
@@ -136,8 +138,8 @@ export class Tab2Page {
           "popupContent": this.locationname + "<br>" +
           "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
           "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " " + this.provider + "<br>" +
-          "Amenities: "  + "<br>" +
-          "Hazards: "  + "<br>" +
+          "Amenities: " + this.amenities + "<br>" +
+          "Hazards: " + this.hazards + "<br>" +
           "Description: " + this.description
       },
       "geometry": {
@@ -149,8 +151,7 @@ export class Tab2Page {
       sessionStorage.setItem('savedMarkers',JSON.stringify(collection));
     };
 
-  //This code below is to add a new location maker
-  //This link helped guide some parts, has useful tips https://stackoverflow.com/questions/41139546/angular2-ngsubmit-not-working
+  //This code below is to add a new location maker from the form input on the website
   addLocation(form: NgForm) {
     //code to get input from the form and store it in variables
     this.xinputValue = parseFloat(document.getElementById('lat').getAttribute('value'));
@@ -163,30 +164,31 @@ export class Tab2Page {
     this.service = form.value.service;
     this.provider = form.controls['provider'].value;
 
-    let amenities = '';
+    //code to add information to amenities variable    
     if (this.restroomsCheck) {this.restrooms = 'restrooms';
-                           amenities += this.restrooms;}
+                           this.amenities += this.restrooms;}
     if (this.grillsCheck) {this.grills = 'grills';
-                           amenities += ', ' + this.grills;}
+                           this.amenities += ', ' + this.grills;}
     if (this.tablesCheck) {this.tables = 'tables';
-                           amenities += ', ' + this.tables;}
+                           this.amenities += ', ' + this.tables;}
     if (this.showersCheck) {this.showers = 'showers';
-                           amenities += ', ' + this.showers;}
+                           this.amenities += ', ' + this.showers;}
     if (this.trashcansCheck) {this.trashcans = 'trashcans';
-                           amenities += ', ' + this.trashcans;}
+                           this.amenities += ', ' + this.trashcans;}
 
-    let hazards = '';
+    //code to add information to hazard variable    
     if (this.bearsCheck) {this.bears = 'bears';
-                           hazards += this.bears;}
+                           this.hazards += this.bears;}
     if (this.insectsCheck) {this.insects = 'insects';
-                           hazards += ', ' + this.insects;}
+                           this.hazards += ', ' + this.insects;}
     if (this.terrainCheck) {this.terrain = 'terrain';
-                           hazards += ', ' + this.terrain;}
+                           this.hazards += ', ' + this.terrain;}
     if (this.fireCheck) {this.fire = 'fire risk';
-                           hazards += ', ' + this.fire;}
+                           this.hazards += ', ' + this.fire;}
     if (this.floodingCheck) {this.flooding = 'flooding';
-                           hazards += ', ' + this.flooding;}
+                           this.hazards += ', ' + this.flooding;}
 
+    //code to select the proper icon marker for the campsite
     var iconVariable = this.greenDriveIcon;
     if (this.driveOrHike == "Hike"){
       if (this.freeOrPaid == "Free"){
@@ -203,15 +205,15 @@ export class Tab2Page {
       }
     }
 
+    //Code to create review marker with proper number of stars based off the user rating
     if (this.rating == 1) {
       var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         // .bindPopup("<h1>"+this.locationname +"</h1>"+ " <br>" +
         .bindPopup("<h1>"+this.locationname +"</h1>"+ " <br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
-        // "Description: " + this.description + "<img src='" + this.photo+"' />") //just want it to work but it wont
-        "Amenities: " + amenities + "<br>" +
-        "Hazards: " + hazards + "<br>" +
+        "Amenities: " + this.amenities + "<br>" +
+        "Hazards: " + this.hazards + "<br>" +
         "Description: " + this.description);
         this.saveMarkerToStorage(marker);
       alert("Location Pin Added Successfully!");
@@ -225,8 +227,8 @@ export class Tab2Page {
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span><br>" +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
-        "Amenities: " + amenities + "<br>" +
-        "Hazards: " + hazards + "<br>" +
+        "Amenities: " + this.amenities + "<br>" +
+        "Hazards: " + this.hazards + "<br>" +
         "Description: " + this.description);
       this.saveMarkerToStorage(marker);
       alert("Location Pin Added Successfully!");
@@ -241,8 +243,8 @@ export class Tab2Page {
         "<span class=\"fa fa-star checked \"></span>" +
         "<span class=\"fa fa-star\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
-        "Amenities: " + amenities + "<br>" +
-        "Hazards: " + hazards + "<br>" +
+        "Amenities: " + this.amenities + "<br>" +
+        "Hazards: " + this.hazards + "<br>" +
         "Description: " + this.description);
       this.saveMarkerToStorage(marker);
       alert("Location Pin Added Successfully!");
@@ -258,8 +260,8 @@ export class Tab2Page {
         "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
-        "Amenities: " + amenities + "<br>" +
-        "Hazards: " + hazards + "<br>" +
+        "Amenities: " + this.amenities + "<br>" +
+        "Hazards: " + this.hazards + "<br>" +
         "Description: " + this.description);
       this.saveMarkerToStorage(marker);
       alert("Location Pin Added Successfully!");
@@ -276,8 +278,8 @@ export class Tab2Page {
         "<span class=\"fa fa-star\"></span>"  +
         "<span class=\"fa fa-star\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
-        "Amenities: " + amenities + "<br>" +
-        "Hazards: " + hazards + "<br>" +
+        "Amenities: " + this.amenities + "<br>" +
+        "Hazards: " + this.hazards + "<br>" +
         "Description: " + this.description);
       this.saveMarkerToStorage(marker);
       alert("Location Pin Added Successfully!");
@@ -295,8 +297,8 @@ export class Tab2Page {
     document.getElementById('displayDriveHike').innerHTML += this.driveOrHike;
     if (this.service > 0 && this.service <= 5)
       document.getElementById('displayService').innerHTML += (this.service + " Bars " + this.provider);
-    document.getElementById('displayAmenities').innerHTML += amenities;
-    document.getElementById('displayHazards').innerHTML += hazards;
+    document.getElementById('displayAmenities').innerHTML += this.amenities;
+    document.getElementById('displayHazards').innerHTML += this.hazards;
     document.getElementById('displayDesc').innerHTML += this.description;
   }
 
@@ -343,6 +345,7 @@ export class Tab2Page {
       this.map2.invalidateSize();
     }, 0);
 
+    //load saved markers
     this.loadSavedMarkers();
 
   }
