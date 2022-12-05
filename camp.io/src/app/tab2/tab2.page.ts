@@ -6,6 +6,8 @@ import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { GeoSearchControl } from 'leaflet-geosearch';
 import { PhotoService } from '../services/photo.service';
 import 'leaflet.locatecontrol';
+import { getLocaleTimeFormat } from '@angular/common';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 const provider = new OpenStreetMapProvider();
 
 @Component({
@@ -53,6 +55,9 @@ export class Tab2Page {
   terrain = null;
   fire = null;
   flooding = null;
+
+  savedMarkers = null;
+  drawnItems = null;
 
   constructor(public photoService: PhotoService) { }
 
@@ -104,6 +109,19 @@ export class Tab2Page {
     this.photoService.addNewToGallery();
   }
 
+  //this function loads saved markers upon page initialization
+  loadSavedMarkers(){
+    //https://stackoverflow.com/questions/55631409/change-marker-in-a-leaflet-map-with-geojson-data
+
+    this.savedMarkers = sessionStorage.getItem('savedMarkers');
+    this.drawnItems = new L.FeatureGroup();
+    this.map2.addLayer(this.drawnItems);
+    if (this.savedMarkers){
+      //https://gis.stackexchange.com/questions/179912/leaflet-html-geojson-how-to-put-a-pop-up-on-a-geojson-point
+      console.log(this.savedMarkers);
+      L.geoJSON(JSON.parse(this.savedMarkers)).addTo(this.map2);
+    }
+  }
   //This code below is to add a new location maker
   //This link helped guide some parts, has useful tips https://stackoverflow.com/questions/41139546/angular2-ngsubmit-not-working
   addLocation(form: NgForm) {
@@ -157,19 +175,49 @@ export class Tab2Page {
         iconVariable = this.redDriveIcon;
       }
     }
+    //https://gis.stackexchange.com/questions/434093/saving-on-mouse-click-created-markers-to-be-available-after-reloading-the-brow
 
     if (this.rating == 1) {
-      L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
-      // L.marker([this.xinputValue, this.yinputValue], {icon: firefoxIcon}).addTo(this.map2)
+
+      //Code that adds marker to map 
+      var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.drawnItems)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " " + this.provider + "<br>" +
-        // "Description: " + this.description + "<img src='" + this.photo+"' />")//just want it to wrok but it wont
         "Amenities: " + amenities + "<br>" +
         "Hazards: " + hazards + "<br>" +
         "Description: " + this.description)
+
+      //code to add marker to collection
+      var collection = this.drawnItems.toGeoJSON();
+      sessionStorage.setItem('savedMarkers',JSON.stringify(collection));
+      console.log(collection);
+        //geojson stuff
+      // geojson = marker.toGeoJSON();
+      // collection.features.push(geojson);
+      // console.log(collection);
+      // savedMarkers = collection;
+      
     }
     else if (this.rating == 2) {
+      //testing making temporary marker
+      // var markerList:string[];
+      // markerList = ["title","icon variable","rating","cell service", "provider", "amenities", "hazards", "description"];
+      // var locationtitle = this.locationname;
+      // var iconV = iconVariable;
+      // var rating = this.rating;
+      // var cellservice = this.service;
+      // // var amenities
+      // // var hazards;
+      // var description = this.description;
+      // var xcor= this.xinputValue;
+      // var ycor = this.yinputValue;
+
+      // markerList = [locationtitle,xcor,ycor,iconV,rating,cellservice, provider, amenities, hazards, description];
+      // L.marker([parseInt(markerList[1]), parseInt(markerList[2])],{title: locationtitle, icon: iconV}).addTo(this.map2)
+      //   .bindPopup(locationtitle)
+      
+      // correct marker
       L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
@@ -263,6 +311,8 @@ export class Tab2Page {
     setTimeout(() => {
       this.map2.invalidateSize();
     }, 0);
+
+    this.loadSavedMarkers();
   }
 
   clearHTML() {

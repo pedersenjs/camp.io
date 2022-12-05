@@ -5,6 +5,10 @@ import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { GeoSearchControl } from 'leaflet-geosearch';
 import 'leaflet-panel-layers';
 import 'leaflet.locatecontrol';
+// import * as fs from 'fs';
+// import * as fs from 'node:fs';
+// import * as rd from 'readline'
+
 const provider = new OpenStreetMapProvider();
 
 @Component({
@@ -62,6 +66,8 @@ export class Tab1Page {
 
   constructor(public router: Router) {}
 
+  // fileContent: string = '';
+
   ngOnInit() {
     this.map = L.map('map', {
       center: [36.216536,-81.674616],
@@ -81,6 +87,34 @@ export class Tab1Page {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap_',
     }).addTo(this.map)
+
+    // have loop here to get data from the text file. Have it be csv and use strings to represent greenIcon and what not
+    //this chunk does not work because you can't just name a file name
+    // var file: string = 'textdb.txt';
+    // var blobfile: Blob;
+    // blobfile = file as unknown as Blob;
+    // let fileReader: FileReader = new FileReader();
+    // // let self = this;
+    // // fileContent 
+    // fileReader.readAsText(blobfile);
+    // fileReader.onloadend = function(x){
+    //   // var fileContent = fileReader.result;
+    //   console.log(fileReader.result);
+    // }
+
+    //https://researchhubs.com/post/computing/javascript/open-a-local-file-with-javascript.html
+    //this works but idk what it does
+    // var txt = '';
+    // var xmlhttp = new XMLHttpRequest();
+    // xmlhttp.onreadystatechange = function(){
+    //   if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+    //     txt = xmlhttp.responseText;
+    //   }
+    // };
+    // xmlhttp.open("GET", "../../assets/textdb.txt", true);
+    // xmlhttp.send();
+
+
 
     //initial example markers
     L.marker([36.215851,-81.684765], {title:"Appalachian State University", icon: this.greenDriveIcon}).addTo(this.map)

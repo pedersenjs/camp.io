@@ -1,0 +1,1 @@
+title,paid or free, hike or drive,rating,cell service, provider, amenities, hazards, description
