@@ -56,7 +56,7 @@ export class Tab2Page {
   fire = null;
   flooding = null;
 
-  savedMarkers = null;
+  savedMarkers = sessionStorage.getItem('savedMarkers');
   drawnItems = null;
 
   constructor(public photoService: PhotoService) { }
@@ -117,9 +117,31 @@ export class Tab2Page {
     this.drawnItems = new L.FeatureGroup();
     this.map2.addLayer(this.drawnItems);
     if (this.savedMarkers){
+      // var coords = JSON.parse(this.savedMarkers);
+      // coords.forEach(function(coord){
+      //   console.log(coord);
+      //   L.marker(coord).addTo(this.map2);
+      // });
       //https://gis.stackexchange.com/questions/179912/leaflet-html-geojson-how-to-put-a-pop-up-on-a-geojson-point
-      console.log(this.savedMarkers);
-      L.geoJSON(JSON.parse(this.savedMarkers)).addTo(this.map2);
+      // console.log(this.savedMarkers);
+      // // var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.drawnItems)
+
+      function onEachFeature(feature, layer) {
+        // does this feature have a property named popupContent?
+      // var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
+
+        if (feature.properties && feature.properties.popupContent) {
+            layer.bindPopup(feature.properties.popupContent);
+        }
+      }
+      // var sm = JSON.parse(this.savedMarkers);
+
+      L.geoJSON((JSON.parse(this.savedMarkers)), {
+        onEachFeature: onEachFeature
+      }).addTo(this.map2);
+    
+      //line that works
+      // L.geoJSON(JSON.parse(this.savedMarkers)).addTo(this.map2);
     }
   }
   //This code below is to add a new location maker
@@ -180,18 +202,44 @@ export class Tab2Page {
     if (this.rating == 1) {
 
       //Code that adds marker to map 
-      var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.drawnItems)
+      var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + "<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " " + this.provider + "<br>" +
         "Amenities: " + amenities + "<br>" +
         "Hazards: " + hazards + "<br>" +
-        "Description: " + this.description)
+        "Description: " + this.description);
 
       //code to add marker to collection
+      
+      marker.feature = {"type": "Feature",
+      "properties": {
+          "name": this.locationname,
+          "description": this.description,
+          "popupContent": this.locationname + "<br>" +
+          "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
+          "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " " + this.provider + "<br>" +
+          "Amenities: " + amenities + "<br>" +
+          "Hazards: " + hazards + "<br>" +
+          "Description: " + this.description
+      },
+      "geometry": {
+          "type": "Point",
+          "coordinates": [this.xinputValue, this.yinputValue]
+      }};
+      // marker.feature.type = 'Feature';    // Correction, thanks to @Manard82
+      // marker.feature.properties = {};
+      // marker.feature.properties.name = this.locationname;
+      // marker.feature.properties.decription = this.description;
+
+      marker.addTo(this.drawnItems);
       var collection = this.drawnItems.toGeoJSON();
+      // console.log(collection);
+      // this.savedMarkers.push(collection);
       sessionStorage.setItem('savedMarkers',JSON.stringify(collection));
-      console.log(collection);
+      
+
+      // console.log(collection);
         //geojson stuff
       // geojson = marker.toGeoJSON();
       // collection.features.push(geojson);
