@@ -55,6 +55,9 @@ export class Tab2Page {
   fire = null;
   flooding = null;
 
+  savedMarkers = sessionStorage.getItem('savedMarkers');
+  drawnItems = null;
+
   constructor(public photoService: PhotoService) { }
 
   greenDriveIcon = L.icon({
@@ -107,6 +110,44 @@ export class Tab2Page {
     this.photoService.addNewToGallery();
     alert('Adding photo to submission!');
   }
+
+    //this function loads saved markers upon page initialization
+    loadSavedMarkers(){
+      this.savedMarkers = sessionStorage.getItem('savedMarkers');
+      this.drawnItems = new L.FeatureGroup();
+      this.map2.addLayer(this.drawnItems);
+      if (this.savedMarkers){
+        function onEachFeature(feature, layer) {
+          if (feature.properties && feature.properties.popupContent) {
+              layer.bindPopup(feature.properties.popupContent);
+          }
+        }
+        L.geoJSON((JSON.parse(this.savedMarkers)), {
+          onEachFeature: onEachFeature
+        }).addTo(this.map2);
+      }
+    }
+
+    saveMarkerToStorage(marker){
+      marker.feature = {"type": "Feature",
+      "properties": {
+          "name": this.locationname,
+          "description": this.description,
+          "popupContent": this.locationname + "<br>" +
+          "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
+          "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " " + this.provider + "<br>" +
+          "Amenities: "  + "<br>" +
+          "Hazards: "  + "<br>" +
+          "Description: " + this.description
+      },
+      "geometry": {
+          "type": "Point",
+          "coordinates": [this.xinputValue, this.yinputValue]
+      }};
+      marker.addTo(this.drawnItems);
+      var collection = this.drawnItems.toGeoJSON();
+      sessionStorage.setItem('savedMarkers',JSON.stringify(collection));
+    };
 
   //This code below is to add a new location maker
   //This link helped guide some parts, has useful tips https://stackoverflow.com/questions/41139546/angular2-ngsubmit-not-working
@@ -163,35 +204,38 @@ export class Tab2Page {
     }
 
     if (this.rating == 1) {
-      L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
-        .bindPopup(this.locationname + " -<br>" +
+      var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
+        // .bindPopup("<h1>"+this.locationname +"</h1>"+ " <br>" +
+        .bindPopup("<h1>"+this.locationname +"</h1>"+ " <br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         // "Description: " + this.description + "<img src='" + this.photo+"' />") //just want it to work but it wont
         "Amenities: " + amenities + "<br>" +
         "Hazards: " + hazards + "<br>" +
-        "Description: " + this.description)
+        "Description: " + this.description);
+        this.saveMarkerToStorage(marker);
       alert("Location Pin Added Successfully!");
       this.isVisible = true;
       document.getElementById('map2').scrollIntoView();
       this.map2.flyTo(new L.LatLng(this.xinputValue, this.yinputValue), 15);
     }
     else if (this.rating == 2) {
-      L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
+      var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + " -<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span><br>" +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Amenities: " + amenities + "<br>" +
         "Hazards: " + hazards + "<br>" +
-        "Description: " + this.description)
+        "Description: " + this.description);
+      this.saveMarkerToStorage(marker);
       alert("Location Pin Added Successfully!");
       this.isVisible = true;
       document.getElementById('map2').scrollIntoView();
       this.map2.flyTo(new L.LatLng(this.xinputValue, this.yinputValue), 15);
     }
     else if (this.rating == 3) {
-      L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
+      var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + " -<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
@@ -199,14 +243,15 @@ export class Tab2Page {
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Amenities: " + amenities + "<br>" +
         "Hazards: " + hazards + "<br>" +
-        "Description: " + this.description)
+        "Description: " + this.description);
+      this.saveMarkerToStorage(marker);
       alert("Location Pin Added Successfully!");
       this.isVisible = true;
       document.getElementById('map2').scrollIntoView();
       this.map2.flyTo(new L.LatLng(this.xinputValue, this.yinputValue), 15);
     }
     else if (this.rating == 4) {
-      L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
+      var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + " -<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
@@ -215,14 +260,15 @@ export class Tab2Page {
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Amenities: " + amenities + "<br>" +
         "Hazards: " + hazards + "<br>" +
-        "Description: " + this.description)
+        "Description: " + this.description);
+      this.saveMarkerToStorage(marker);
       alert("Location Pin Added Successfully!");
       this.isVisible = true;
       document.getElementById('map2').scrollIntoView();
       this.map2.flyTo(new L.LatLng(this.xinputValue, this.yinputValue), 15);
     }
     else if (this.rating == 5) {
-      L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
+      var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
         .bindPopup(this.locationname + " -<br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
@@ -232,7 +278,8 @@ export class Tab2Page {
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
         "Amenities: " + amenities + "<br>" +
         "Hazards: " + hazards + "<br>" +
-        "Description: " + this.description)
+        "Description: " + this.description);
+      this.saveMarkerToStorage(marker);
       alert("Location Pin Added Successfully!");
       this.isVisible = true;
       document.getElementById('map2').scrollIntoView();
@@ -295,6 +342,9 @@ export class Tab2Page {
     setTimeout(() => {
       this.map2.invalidateSize();
     }, 0);
+
+    this.loadSavedMarkers();
+
   }
 
   clearHTML() {
