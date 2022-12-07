@@ -17,7 +17,17 @@ Camp.io will provide a robust system for users to track campsites they have been
 ## Project Files Overview
 
 ## Feature Replication Guide
+### Website Homepage
+### Embedding Map in Webpage
+#### Adding Search Bar to Map
+### Adding Location Markers to Map
+### Creating Form to Take User Input 
+### Creating Persistant Markers
+### Styling Website
 
+
+Old features Below, keeping them for the meanwhile while we copy them over
+----------------------
 ### Feature 1- Creating a welcome page for the website
 ![image](https://user-images.githubusercontent.com/89262517/188728280-b5eb88de-5c0f-461b-b55b-a0c74333f4ae.png)
 ###### Image of how the website looks after implementing this feature
