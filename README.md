@@ -1,9 +1,9 @@
 # Camp.io
 ## Table of Contents
-1. [Project Overview](https://github.com/pedersenjs/camp.io/main/README.md#project-overview)
-2. [Installation Guide](https://github.com/pedersenjs/camp.io/main/README.md#installation-guide)
-3. [Project Files Overview](https://github.com/pedersenjs/camp.io/main/README.md#project-files-overview)
-4. [Feature Replication Guide](https://github.com/pedersenjs/camp.io/main/README.md#feature-replication-guide)
+1. [Project Overview](https://github.com/pedersenjs/camp.io/blob/main/README.md#project-overview)
+2. [Installation Guide](https://github.com/pedersenjs/camp.io/blob/main/README.md#installation-guide)
+3. [Project Files Overview](https://github.com/pedersenjs/camp.io/blob/main/README.md#project-files-overview)
+4. [Feature Replication Guide](https://github.com/pedersenjs/camp.io/blob/main/README.md#feature-replication-guide)
 
 ## Project Overview
 Jenna Pedersen and Patrick Turner<br>
