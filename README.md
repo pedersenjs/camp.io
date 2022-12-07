@@ -1,12 +1,24 @@
 # Camp.io
+## Table of Contents
+1. [Project Overview](https://github.com/pedersenjs/camp.io/edit/main/README.md#project-overview)
+2. [Installation Guide](https://github.com/pedersenjs/camp.io/edit/main/README.md#installation-guide)
+3. [Project Files Overview](https://github.com/pedersenjs/camp.io/edit/main/README.md#project-files-overview)
+4. [Feature Replication Guide](https://github.com/pedersenjs/camp.io/edit/main/README.md#feature-replication-guide)
+
+## Project Overview
 Jenna Pedersen and Patrick Turner<br>
 Type of your project: Mobile app (Android and iOS)<br>
 Domain of your project: Recreation<br>
 
 Camp.io will provide a robust system for users to track campsites they have been to as well as discover new campsites. Users will be able to add photos and ratings of a location they have camped at, and other users will be able to comment on the review. Users will also be able to add campsites to a list. Users will be able to save a campsite locally on their device, or make it public for all users to see. 
 
+## Installation Guide
 
-## Feature 1- Creating a welcome page for the website
+## Project Files Overview
+
+## Feature Replication Guide
+
+### Feature 1- Creating a welcome page for the website
 ![image](https://user-images.githubusercontent.com/89262517/188728280-b5eb88de-5c0f-461b-b55b-a0c74333f4ae.png)
 ###### Image of how the website looks after implementing this feature
 We chose to use the Ionic webframework for this website. After cloning the empty repository folder, we created an Ionic project using the command line code: 
@@ -35,7 +47,7 @@ mark {
 This let us add a background image, as well as the format for highlighting the title of our website. 
 
 
-## Feature 2- Embedding a map into the website
+### Feature 2- Embedding a map into the website
 ![image](https://user-images.githubusercontent.com/89262517/191318480-6b65dede-db40-452a-8002-a429a00329e2.png)
 ###### Image of one of the error messages we ran into along the way
 This week was full of a lot of troubleshooting as we worked on embedding a map using the Google maps api (https://developers.google.com/maps/apis-by-platform 
@@ -86,7 +98,7 @@ We added the code below to our tab 1, as well as installed leaflet files onto ou
 ```
 We then ran our code and.... no map is being displayed. We have spent a lot of time troubleshooting this issue and are not currently sure how to fix it. 
 
-## Feature 2 Part 2- Embedding a map into the website
+### Feature 2 Part 2- Embedding a map into the website
 ![image](https://user-images.githubusercontent.com/89262517/192602383-5467bb65-15a2-448f-a7a3-0232fb6dd4f7.png)
 ###### Website with the working embedded map
 Progressing from where we ended last week, trying to implement the Leaflet javascript library for OpenStreetMaps on the site, we started by adding a map object onto the html page for tab 1. This required linking the javascript and css files in the ionic header and adding a div with the id of map in the ionic content body.
@@ -154,7 +166,7 @@ Local styling is done on each respective page’s scss file, but the global scss
 Link to Leaflet JavaScript library for embedding Openstreetmaps:
 https://leafletjs.com/ 
 
-## Feature 3- Adding location markers based off of user input
+### Feature 3- Adding location markers based off of user input
 Below is the code that is in our TypeScript document to add a location to the map. It corresponds to the similarly named fields in the HTML form.  More fields can be added by copying the syntax. Form.value.[“the name of the field”] has to be used if there is a special character in the name, otherwise form.value.fieldname can be used to access it. 
 ```
   addLocation(form: NgForm) {
@@ -208,7 +220,7 @@ form {
 ```
 The code here provides some color matching with the background images on each page so that elements blend in better visually with their respective backgrounds, yet still stand out from the background enough so that they are usable. Light curved borders were also provided so that the elements have some symmetry with the topographical elements in the background images too.
 
-## Weekly Update number 5
+### Weekly Update number 5
 For the search bar the geosearch-leaflet package had to be installed using npm install –save geosearch-leaflet. Then, the package had to be updated to remove google related files as they caused compiler errors. After installation and correction to the errors the package must be imported into the typescript files and added to the leaflet map objects.
 
 ![image](https://user-images.githubusercontent.com/89262517/195190377-7939a1f8-1e89-4428-acca-c35102d682e5.png)
