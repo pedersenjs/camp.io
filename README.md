@@ -152,142 +152,212 @@ Camp.io will provide a robust system for users to track campsites they have been
 ![image](https://user-images.githubusercontent.com/89262517/192602383-5467bb65-15a2-448f-a7a3-0232fb6dd4f7.png)
 
 ### Adding Location Markers to Map
+- Leaflet JS has built in support for adding location markers. Default markers are blue and look like the pin on the map above.
+- For the purposes of our application we have defined four custom markers in the code below:
 
+```
+	greenBackIcon = L.icon({
+	    iconUrl: '../../assets/green_hex1.png',
+	    shadowUrl: '../../assets/markers_shadow.png',
+	    iconSize: [ 30, 45 ],
+	    iconAnchor: [ 17, 42 ],
+	    popupAnchor: [ 1, -32 ],
+	    shadowAnchor: [ 10, 12 ],
+	    shadowSize: [ 36, 16 ]
+	  });
+```
+
+- The pins we have defined include green and red and circle and hexagon pins, defining free and paid, and drive-to or hike-to campsites respectively.
+
+![Screenshot 2022-12-08 075324](https://user-images.githubusercontent.com/89099652/206451624-f360d29e-38d3-4cbc-b1a8-ac5ea2f49332.png)
+
+- Once icons are defined markers can be added to the map like so:
+
+```
+	L.marker([36.215851,-81.684765], {title:"Appalachian State University", icon: this.greenDriveIcon}).addTo(this.map)
+	    .bindPopup('Appalachian State University -<br>' +
+	    "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
+	    "<span class='fa fa-star'></span>" +
+	    "<span class=\"fa fa-star checked\"></span>" +
+	    "<span class=\"fa fa-star\"></span>"  +
+	    "<span class=\"fa fa-star\"></span><br>"  +
+	    "Description: This is our university that we attend. I one time took a nap on Sanford Mall for a few hours between classes."
+	    + " I had a dream Yosef threw me a birthday party but other than that it was nice. would come back");
+```
 ### Adding Search Bar to Map
+- Search bar functionality is not native to Leafet by default. Leaflet has multiple plugins which can handle search functionality, but we installed Leaflet-Geosearch:
+
+	```npm install --save leaflet-geosearch```
+- After installing the package the code needs to be imported in the typescript and global scss files to handle scripting and styling:
+
+**This is the page.ts file import*
+```
+	import { GeoSearchControl } from 'leaflet-geosearch';
+```
+
+**This is the global.scss file*
+```
+	@import "~leaflet-geosearch/dist/geosearch.css";
+```
+- Lastly, under the original map definition in the .ts file add the search control to the map using this code. The search bar should now appear on the map (there may be style differences):
+
+```
+	    this.map.addControl(GeoSearchControl({
+	      provider,
+	      style: 'bar',
+	    }))
+```
+![Screenshot 2022-12-08 081045](https://user-images.githubusercontent.com/89099652/206455035-01fdc603-3d84-439a-9e80-59f85e913070.png)
 
 ### Creating Form to Take User Input 
+- The form page contains the majority of the code for the form and the logic for handling adding pins to the form map.
+- First, the form is defined in the html page for tab2:
 
-### Creating Persistant Markers
+```
+	    <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)">
+	    <!-- <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)" action="http://localhost:8100/tabs/tab2" method="POST"> -->
+	      <fieldset>
+		<legend>Required</legend>
+		<label for="name">Name: </label>
+		<input type="text" name="name" id="name" ngModel/><br>
+```
+- Once the form with its labels and inputs are laid out the tab2 .ts file needs to get the information from each variable. This is different for some variables:
 
+```
+	    this.xinputValue = parseFloat(document.getElementById('lat').getAttribute('value'));
+	    this.yinputValue = parseFloat(document.getElementById('lon').getAttribute('value'));
+	    this.locationname = form.value.name;
+	    this.rating = form.value.rating;
+	    this.description=form.value.description;
+	    this.freeOrPaid = form.controls['paidOrFree'].value;
+	    this.driveOrHike = form.controls['hikeOrDrive'].value;
+	    this.service = form.value.service;
+	    this.provider = form.controls['provider'].value;
+```
+- The values are then handled differently as strings so that they can be added to the marker information as html code:
 
-### Feature 3- Adding location markers based off of user input
-Below is the code that is in our TypeScript document to add a location to the map. It corresponds to the similarly named fields in the HTML form.  More fields can be added by copying the syntax. Form.value.[“the name of the field”] has to be used if there is a special character in the name, otherwise form.value.fieldname can be used to access it. 
 ```
-  addLocation(form: NgForm) {
-    this.xinputValue = form.value["x-coordinate"];
-    this.yinputValue = form.value["y-coordinate"];
-    this.locationname = form.value.name;
- 
-    L.marker([this.xinputValue,this.yinputValue]).addTo(this.map2)
-    .bindPopup(this.locationname)//36.230833,-81.676111
-  }
-  ```
-The HTML code that creates the form, and relates to the TS code that says form.value, is show below. Input items can easily be added to take in more user information, which is what we plan on working on this week. 
-```
-  <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)">
-    <mark><label for="location">X-coordinate:</label></mark>
-    <input type="text" name="x-coordinate" id="x-coordinate" ngModel><br>
-    <mark><label for="location">Y-coordinate:</label></mark>
-    <input type="text" name="y-coordinate" id="coordinate" ngModel><br>
-    <mark><label for="name">Name:</label></mark>
-    <input type="text" name="name" id="coordinate" ngModel><br>
-    <button type="submit">Add Location</button>
-  </form>
-  ```
-The search functionality is still being worked on this week, along with other visual layers for the maps, but some CSS styling was done for the pages we’re working on to make them easier to use and look at.
-```
-form {
-  margin: 0px auto;
-  color: rgb(154,55,247);
-  background-color: #0B1121;
-  width: 20%;
-  padding: 10px;
-  border: 3px solid rgb(154,55,247);
-  border-radius: 25px;
-}
-	p {
-  margin: 10px auto;
-  color: #3AFFA1;
-  background-color: #0B1121;
-  width: 80%;
-  padding: 10px;
-  border: 3px solid #3AFFA1;
-  border-radius: 25px;
-}
-#map {
-  margin: 0 auto;
-  min-height: 80%;
-  width: 80%;
-  border: 5px solid #3AFFA1;
-  border-radius: 25px;
-}
-```
-The code here provides some color matching with the background images on each page so that elements blend in better visually with their respective backgrounds, yet still stand out from the background enough so that they are usable. Light curved borders were also provided so that the elements have some symmetry with the topographical elements in the background images too.
+	    //code to add information to amenities variable    
+	    if (this.restroomsCheck) {this.restrooms = 'restrooms';
+				   this.amenities += this.restrooms;}
+	    if (this.grillsCheck) {this.grills = 'grills';
+				   this.amenities += ', ' + this.grills;}
+	    if (this.tablesCheck) {this.tables = 'tables';
+				   this.amenities += ', ' + this.tables;}
+	    if (this.showersCheck) {this.showers = 'showers';
+				   this.amenities += ', ' + this.showers;}
+	    if (this.trashcansCheck) {this.trashcans = 'trashcans';
+				   this.amenities += ', ' + this.trashcans;}
 
-### Weekly Update number 5
-For the search bar the geosearch-leaflet package had to be installed using npm install –save geosearch-leaflet. Then, the package had to be updated to remove google related files as they caused compiler errors. After installation and correction to the errors the package must be imported into the typescript files and added to the leaflet map objects.
+	    //code to add information to hazard variable    
+	    if (this.bearsCheck) {this.bears = 'bears';
+				   this.hazards += this.bears;}
+	    if (this.insectsCheck) {this.insects = 'insects';
+				   this.hazards += ', ' + this.insects;}
+	    if (this.terrainCheck) {this.terrain = 'terrain';
+				   this.hazards += ', ' + this.terrain;}
+	    if (this.fireCheck) {this.fire = 'fire risk';
+				   this.hazards += ', ' + this.fire;}
+	    if (this.floodingCheck) {this.flooding = 'flooding';
+				   this.hazards += ', ' + this.flooding;}
 
-![image](https://user-images.githubusercontent.com/89262517/195190377-7939a1f8-1e89-4428-acca-c35102d682e5.png)
-###### Image of the search bar feature
+	    //code to select the proper icon marker for the campsite
+	    var iconVariable = this.greenDriveIcon;
+	    if (this.driveOrHike == "Hike"){
+	      if (this.freeOrPaid == "Free"){
+		iconVariable = this.greenBackIcon;
+	      } else {
+		iconVariable = this.redBackIcon;
+	      }
+	    }
+	    else {
+	      if (this.freeOrPaid == "Free"){
+		iconVariable = this.greenDriveIcon;
+	      } else {
+		iconVariable = this.redDriveIcon;
+	      }
+	    }
 ```
-import { OpenStreetMapProvider } from 'leaflet-geosearch';
-import { GeoSearchControl } from 'leaflet-geosearch';
-const provider = new OpenStreetMapProvider();
-```
-Here we have our provider for the location information defined as well as OpenStreetMaps which also provide the tile renders for our maps.
-```
-ngOnInit() {
-    this.map = L.map('map', {
-      center: [36.216536,-81.674616],
-      zoom: 13,
-      renderer: L.canvas(),
-      //Attribution control for removing attribution data:
-      // attributionControl: false
-    })
- 
-    this.map.addControl(GeoSearchControl({
-      provider,
-      style: 'bar',
-    }))
-```
-In the init function for the map code has been added to add the search bar control layer on top of the existing map using the established provider for the auto-fill data. 
-```
-@import "~leaflet/dist/leaflet.css";
-@import "~leaflet-geosearch/dist/geosearch.css";
-```
-Styling for the search bar is provided by the global.scss file which requires css imports of the dependency css files. These files can be edited and rebuilt with the project to change the styling, which needed some edits to show the search bar correctly on dark mode devices.
+- Then, based on what value was input for the rating the code picks an if statement which will display the appropriate amount of stars and add the pin to the map:
 
-![image](https://user-images.githubusercontent.com/89262517/195190509-e4f34461-794a-4643-8c27-ae13dfe0421b.png)
-###### Image of the review feature including a rating and a description
-We also added code to insert a description and a rating into the review, as shown in the HTML code below. 
 ```
-<label for="description">Description:</label><br>
-    <textarea type="text" name="description"  cols="30" rows="5" id="coordinate" ngModel></textarea><br>
-   <label for="rating">Rating Out of 5:  </label>
-    <!-- <p> Message is: <span id = "display_message"></span> </p> -->
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span><br>
-    <input type="text" name="rating" id="coordinate" onkeypress="showMessage()" ngModel><br>
- ```
-Below is the Typescript code. The If statements affect how many stars are displayed on the tab for the rating. Not all if statements are show, but it goes until five out of five stars. 
+	    //Code to create review marker with proper number of stars based off the user rating
+	    if (this.rating == 1) {
+	      var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
+		// .bindPopup("<h1>"+this.locationname +"</h1>"+ " <br>" +
+		.bindPopup("<h1>"+this.locationname +"</h1>"+ " <br>" +
+		"Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
+		"Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
+		"Amenities: " + this.amenities + "<br>" +
+		"Hazards: " + this.hazards + "<br>" +
+		"Description: " + this.description);
+		this.saveMarkerToStorage(marker);
+	      alert("Location Pin Added Successfully!");
+	      this.isVisible = true;
+	      document.getElementById('map2').scrollIntoView();
+	      this.map2.flyTo(new L.LatLng(this.xinputValue, this.yinputValue), 15);
+	    }
+	    else if (this.rating == 2) {
 ```
- this.locationname = form.value.name;
-    this.rating = form.value.rating;
-    this.description=form.value.description;
-if (this.rating == 1) {
-      L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
-        .bindPopup(this.locationname + "<br>" +
-        "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
-        "Description: " + this.description)
-    }
-    if (this.rating == 2) {
-      L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
-        .bindPopup(this.locationname + "<br>" +
-        "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
-        "<span class=\"fa fa-star checked \"></span><br>" +
-        "Description: " + this.description)
- 
-    }
-    if (this.rating == 3) {
-      L.marker([this.xinputValue, this.yinputValue]).addTo(this.map2)
-        .bindPopup(this.locationname + "<br>" +
-        "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
-        "<span class=\"fa fa-star checked \"></span>" +
-        // <span class=\"fa fa-star checked\"></span>
-        "<span class=\"fa fa-star\"></span><br>"  +
-        "Description: " + this.description)
-    }
+![image](https://user-images.githubusercontent.com/89099652/206456612-cb725c42-28ec-4e07-88b5-b309669cbb84.png)
+
+### Creating Persistent Markers
+- When a marker is added to the location map using the form the marker is then also added to a list through the saveMarkerToStorage function:
+
 ```
+	   var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
+		// .bindPopup("<h1>"+this.locationname +"</h1>"+ " <br>" +
+		.bindPopup("<h1>"+this.locationname +"</h1>"+ " <br>" +
+		"Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
+		"Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
+		"Amenities: " + this.amenities + "<br>" +
+		"Hazards: " + this.hazards + "<br>" +
+		"Description: " + this.description);
+		this.saveMarkerToStorage(marker);
+```
+- The function itself saves the properties of the marker to a list called sessionStorage.
+
+```
+	    //this function saves a marker to local storage so it remains persistant on the browser
+	    saveMarkerToStorage(marker){
+	      marker.feature = {"type": "Feature",
+	      "properties": {
+		  "name": this.locationname,
+		  "description": this.description,
+		  "popupContent": this.locationname + "<br>" +
+		  "Rating: " + "<span class=\"fa fa-star checked\"></span><br>"  +
+		  "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " " + this.provider + "<br>" +
+		  "Amenities: " + this.amenities + "<br>" +
+		  "Hazards: " + this.hazards + "<br>" +
+		  "Description: " + this.description
+	      },
+	      "geometry": {
+		  "type": "Point",
+		  "coordinates": [this.xinputValue, this.yinputValue]
+	      }};
+	      marker.addTo(this.drawnItems);
+	      var collection = this.drawnItems.toGeoJSON();
+	      sessionStorage.setItem('savedMarkers',JSON.stringify(collection));
+	    };
+```
+- After storing the marker if the page is reloaded the saved pins will be added back to the map using the loadSavedMarkers function:
+
+```
+	    //this function loads saved markers upon page initialization
+	    loadSavedMarkers(){
+	      this.savedMarkers = sessionStorage.getItem('savedMarkers');
+	      this.drawnItems = new L.FeatureGroup();
+	      this.map2.addLayer(this.drawnItems);
+	      if (this.savedMarkers){
+		function onEachFeature(feature, layer) {
+		  if (feature.properties && feature.properties.popupContent) {
+		      layer.bindPopup(feature.properties.popupContent);
+		  }
+		}
+		L.geoJSON((JSON.parse(this.savedMarkers)), {
+		  onEachFeature: onEachFeature
+		}).addTo(this.map2);
+	      }
+	    }
+```
+- These ensure the map markers can still be seen even in the case of the map or session reloading, allowing for there to be some persistent marker set up.
