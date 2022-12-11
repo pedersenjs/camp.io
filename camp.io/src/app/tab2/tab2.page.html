@@ -13,11 +13,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
 </ion-header>
-<!-- for the rating, used https://www.w3schools.com/howto/howto_css_star_rating.asp for guidance -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- This code is for the actual content of the website -->
 <ion-content [fullscreen]="true" padding class="background">
-  <div id="map2"></div>
-  <div class="legend">
+  
+  <div id="map2"></div><!-- This displays the map on the page -->
+  <div class="legend"><!-- This displays a marker legend on the page -->
     <label for="greendef" class="imglabel">Free Drive-up</label>
     <img src="../../assets/green_default.png" class="pins">
     <label for="reddef" class="imglabel">Paid Drive-up</label>
@@ -30,6 +31,7 @@
   <!-- this is the code for the form to leave a review -->
   <div class ='parent'>
     <div class='child'>
+      <!-- This is the code for the form that takes in user input -->
     <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)">
     <!-- <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)" action="http://localhost:8100/tabs/tab2" method="POST"> -->
       <fieldset>
@@ -40,6 +42,7 @@
         <input type="text" name="x-coordinate" id="lat" value=""/><br>
         <label for="location">Y-Coordinate: </label>
         <input type="text" name="y-coordinate" id="lon" value=""/><br>
+        <!-- for the rating, used https://www.w3schools.com/howto/howto_css_star_rating.asp for guidance -->
         <label for="rating">Rating Out of 5: </label><br>
         <input type="radio" value="1" id="1" name="rating" ngModel>
         <label for="free"><span class="fa fa-star"></span></label>
@@ -126,7 +129,6 @@
         <label for="trashcans">Flooding</label><br>
       </fieldset>
       <fieldset>
-        <!-- Helpful review form functionality https://www.w3schools.com/howto/howto_css_user_rating.asp -->
         <legend>Description</legend><br>
         <textarea type="text" name="description" id="coordinate" ngModel></textarea><br>
       </fieldset>
@@ -134,7 +136,7 @@
     </form>
     <button name="photo" (click)="addPhotoToGallery()"><span class="fa fa-camera">  </span> Add Photo</button><br> <!-- The addPhotoToGallery() calls the photo service and adds photo to gallery-->
     </div>
-
+<!-- This code displays the user input once submitted in a separate container so that they can see their submitted review -->
     <div class='child' [style.display]="isVisible ? 'block' : 'none'">
       <div>
         <!-- <input type ="text" name="display" id="display"> -->
