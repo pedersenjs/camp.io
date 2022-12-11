@@ -7,8 +7,8 @@
 
 ## Project Overview
 Jenna Pedersen and Patrick Turner<br>
-Type of your project: Mobile app (Android and iOS)<br>
-Domain of your project: Recreation<br>
+Type of your project: Mobile app (Android and iOS) and Website<br>
+Domain of your project: Travel and Recreation<br>
 
 Camp.io will provide a robust system for users to track campsites they have been to as well as discover new campsites. Users will be able to add photos and ratings of a location they have camped at, and other users will be able to comment on the review. Users will also be able to add campsites to a list. Users will be able to save a campsite locally on their device, or make it public for all users to see. 
 
@@ -55,6 +55,19 @@ Camp.io will provide a robust system for users to track campsites they have been
 ![Screenshot 2022-12-07 215136](https://user-images.githubusercontent.com/89099652/206344382-d24c9886-899d-4c42-8b6e-0b3a62cd847e.png)
 	
 **Output folder will be under the \camp.io\android\app\build\outputs\apk\debug directory*
+
+### Install for Mobile (Android) 
+![image](https://user-images.githubusercontent.com/89262517/206914718-41292c39-7160-4f21-b568-4806908e923d.png)
+
+######Our app is also published to the Android App Store
+1. Open the Google Play Store and search camp.io
+![image](https://user-images.githubusercontent.com/89262517/206914924-4e521678-67bb-4b31-b26f-53ed6fc8a891.png)
+2. Select the app with our icon (there is another app called campio, be careful not to mix these two apps up)
+![image](https://user-images.githubusercontent.com/89262517/206914957-77df5939-dbb0-43ca-8039-ca1891b32739.png)
+3. Tap install on the app to install it on your device- Note that due to regulations surrounding publishing, there may be delays in updating this app compared to if the application is installed using the other methods listed above
+![image](https://user-images.githubusercontent.com/89262517/206914971-e0404d16-1180-4ea7-9256-3878cce578c0.png)
+4. Open the app and enjoy!
+![image](https://user-images.githubusercontent.com/89262517/206915006-77e8dd4a-2702-4079-b3b3-ed32099b7b8f.png)
 
 ## Project Files Overview
 - Within the project directory there are several subdirectories:
