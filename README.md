@@ -59,15 +59,15 @@ Camp.io will provide a robust system for users to track campsites they have been
 ### Install for Mobile (Android) 
 ![image](https://user-images.githubusercontent.com/89262517/206914718-41292c39-7160-4f21-b568-4806908e923d.png)
 
-######Our app is also published to the Android App Store
-1. Open the Google Play Store and search camp.io
-![image](https://user-images.githubusercontent.com/89262517/206914924-4e521678-67bb-4b31-b26f-53ed6fc8a891.png)
-2. Select the app with our icon (there is another app called campio, be careful not to mix these two apps up)
-![image](https://user-images.githubusercontent.com/89262517/206914957-77df5939-dbb0-43ca-8039-ca1891b32739.png)
-3. Tap install on the app to install it on your device- Note that due to regulations surrounding publishing, there may be delays in updating this app compared to if the application is installed using the other methods listed above
-![image](https://user-images.githubusercontent.com/89262517/206914971-e0404d16-1180-4ea7-9256-3878cce578c0.png)
-4. Open the app and enjoy!
-![image](https://user-images.githubusercontent.com/89262517/206915006-77e8dd4a-2702-4079-b3b3-ed32099b7b8f.png)
+###### Our app is also published to the Android App Store
+1. Open the Google Play Store and search camp.io <br>
+![image](https://user-images.githubusercontent.com/89262517/206914924-4e521678-67bb-4b31-b26f-53ed6fc8a891.png)<br>
+2. Select the app with our icon (there is another app called campio, be careful not to mix these two apps up)<br>
+![image](https://user-images.githubusercontent.com/89262517/206914957-77df5939-dbb0-43ca-8039-ca1891b32739.png)<br>
+3. Tap install on the app to install it on your device- Note that due to regulations surrounding publishing, there may be delays in updating this app compared to if the application is installed using the other methods listed above<br>
+![image](https://user-images.githubusercontent.com/89262517/206914971-e0404d16-1180-4ea7-9256-3878cce578c0.png)<br>
+4. Open the app and enjoy!<br>
+![image](https://user-images.githubusercontent.com/89262517/206915006-77e8dd4a-2702-4079-b3b3-ed32099b7b8f.png)<br>
 
 ## Project Files Overview
 - Within the project directory there are several subdirectories:
@@ -81,9 +81,9 @@ Camp.io will provide a robust system for users to track campsites they have been
 	- /.angular contains Angular cache files
 - The project files are all contained in the /src directory:
 	- /app contains app generation files:
-		- /tab1 contains files for the tab1 page of the app
-		- /tab2 contains files for the tab2 page of the app
-		- /tab3 contains files for the tab3 page of the app
+		- /tab1 contains files for the tab1 page (home page) of the app
+		- /tab2 contains files for the tab2 page (Add Location page) of the app
+		- /tab3 contains files for the tab3 page (Lists page) of the app
 		- /tabs contains global files for the app tabs
 		- /services contains app service files like the photo/camera service
 	- /assets contains app image and icon files
@@ -197,6 +197,20 @@ Camp.io will provide a robust system for users to track campsites they have been
 	    "Description: This is our university that we attend. I one time took a nap on Sanford Mall for a few hours between classes."
 	    + " I had a dream Yosef threw me a birthday party but other than that it was nice. would come back");
 ```
+- Any information can be added to the marker in the .bindPopup() parentheses. It can be added in simple HTML format. We have since added in more information to the reviews, like cell service, amenities, and potential hazards, and it now looks like this:
+```
+	L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
+	    .bindPopup(this.locationname + " -<br>" +
+	    "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
+	    "<span class=\"fa fa-star checked \"></span>" +
+	    "<span class=\"fa fa-star checked\"></span>" +
+	    "<span class=\"fa fa-star\"></span><br>"  +
+	    "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
+	    "Amenities: " + this.amenities + "<br>" +
+	    "Hazards: " + this.hazards + "<br>" +
+	    "Description: " + this.description);
+```
+
 ### Adding Search Bar to Map
 - Search bar functionality is not native to Leafet by default. Leaflet has multiple plugins which can handle search functionality, but we installed Leaflet-Geosearch:
 
