@@ -168,25 +168,33 @@ export class Tab2Page {
     if (this.restroomsCheck) {this.restrooms = 'restrooms';
                            this.amenities += this.restrooms;}
     if (this.grillsCheck) {this.grills = 'grills';
-                           this.amenities += ', ' + this.grills;}
+                           if (this.amenities != "") this.amenities += ', ';
+                           this.amenities += this.grills;}
     if (this.tablesCheck) {this.tables = 'tables';
-                           this.amenities += ', ' + this.tables;}
+                            if (this.amenities != "") this.amenities += ', ';
+                           this.amenities += this.tables;}
     if (this.showersCheck) {this.showers = 'showers';
-                           this.amenities += ', ' + this.showers;}
+                          if (this.amenities != "") this.amenities += ', ';
+                           this.amenities += this.showers;}
     if (this.trashcansCheck) {this.trashcans = 'trashcans';
-                           this.amenities += ', ' + this.trashcans;}
+                            if (this.amenities != "") this.amenities += ', ';
+                           this.amenities += this.trashcans;}
 
     //code to add information to hazard variable    
     if (this.bearsCheck) {this.bears = 'bears';
                            this.hazards += this.bears;}
     if (this.insectsCheck) {this.insects = 'insects';
-                           this.hazards += ', ' + this.insects;}
+                          if (this.hazards != "") this.hazards += ', ';
+                           this.hazards += this.insects;}
     if (this.terrainCheck) {this.terrain = 'terrain';
-                           this.hazards += ', ' + this.terrain;}
+                            if (this.hazards != "") this.hazards += ', ';
+                           this.hazards += this.terrain;}
     if (this.fireCheck) {this.fire = 'fire risk';
-                           this.hazards += ', ' + this.fire;}
+                          if (this.hazards != "") this.hazards += ', ';
+                           this.hazards += this.fire;}
     if (this.floodingCheck) {this.flooding = 'flooding';
-                           this.hazards += ', ' + this.flooding;}
+                          if (this.hazards != "") this.hazards += ', ';
+                           this.hazards +=  this.flooding;}
 
     //code to select the proper icon marker for the campsite
     var iconVariable = this.greenDriveIcon;
@@ -223,7 +231,7 @@ export class Tab2Page {
     }
     else if (this.rating == 2) {
       var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
-        .bindPopup(this.locationname + " -<br>" +
+        .bindPopup(this.locationname + " <br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span><br>" +
         "Cell Service " + "<span class=\"fa fa-signal\"></span>: " + this.service + " Bars " + this.provider + "<br>" +
@@ -238,7 +246,7 @@ export class Tab2Page {
     }
     else if (this.rating == 3) {
       var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
-        .bindPopup(this.locationname + " -<br>" +
+        .bindPopup(this.locationname + " <br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
         "<span class=\"fa fa-star\"></span><br>"  +
@@ -254,7 +262,7 @@ export class Tab2Page {
     }
     else if (this.rating == 4) {
       var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
-        .bindPopup(this.locationname + " -<br>" +
+        .bindPopup(this.locationname + " <br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
         "<span class=\"fa fa-star checked\"></span>" +
@@ -271,7 +279,7 @@ export class Tab2Page {
     }
     else if (this.rating == 5) {
       var marker = L.marker([this.xinputValue, this.yinputValue],{title:this.locationname, icon: iconVariable}).addTo(this.map2)
-        .bindPopup(this.locationname + " -<br>" +
+        .bindPopup(this.locationname + " <br>" +
         "Rating: " + "<span class=\"fa fa-star checked\"></span>" +
         "<span class=\"fa fa-star checked \"></span>" +
         "<span class=\"fa fa-star checked\"></span>" +
