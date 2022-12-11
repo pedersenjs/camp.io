@@ -331,6 +331,19 @@ Camp.io will provide a robust system for users to track campsites they have been
 ```
 ![image](https://user-images.githubusercontent.com/89099652/206456612-cb725c42-28ec-4e07-88b5-b309669cbb84.png)
 
+### Autofill Map Coordinates
+- On the Add Location page map, and only on this map, users can right click (or tap and hold on mobile) to auto fill the coordinates of a point into the form.
+- This is done by adding an event to the "contextmenu" option of the Leaflet map in the tab2 .ts file which activates when a user interacts with it as described above:
+
+```
+	    this.map2.on("contextmenu", function (event) {
+	      alert("Autofilled Selected Coordinates: (" + event.latlng.lat.toPrecision(8) + ", " + event.latlng.lng.toPrecision(8) + ")");
+	      document.getElementById('lat').setAttribute("value", event.latlng.lat.toPrecision(8));
+	      document.getElementById('lon').setAttribute("value", event.latlng.lng.toPrecision(8));
+	    });
+```
+- The event then sends an alert message and sets the value of the latitude and longitude variables to the precise point specified by the user input on the map.
+
 ### Creating Persistent Markers
 - When a marker is added to the location map using the form the marker is then also added to a list through the saveMarkerToStorage function:
 
