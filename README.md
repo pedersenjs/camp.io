@@ -242,13 +242,16 @@ Camp.io will provide a robust system for users to track campsites they have been
 
 ```
 	    <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)">
-	    <!-- <form #locationForm="ngForm" (ngSubmit)="addLocation(locationForm)" action="http://localhost:8100/tabs/tab2" method="POST"> -->
 	      <fieldset>
 		<legend>Required</legend>
 		<label for="name">Name: </label>
 		<input type="text" name="name" id="name" ngModel/><br>
+		</fieldset>
+		<button type="submit">Complete Review</button>
+	    </form>
 ```
-- Once the form with its labels and inputs are laid out the tab2 .ts file needs to get the information from each variable. This is different for some variables:
+- The code ```` (ngSubmit)="addLocation(locationForm)" ```` means that when the Complete Review button, with type "submit" is submitted, the form data will be passed to a funciton in the tab2.ts file called addLocation()
+- Once the form with its labels and inputs are laid out, the tab2.ts file will get the information from each variable in the form. There is different syntax depending on the type of the variable and the method it is being input into the form (IE a textfield versus a radio button). This is the code in the tab2.ts file to parse that information into variables:
 
 ```
 	    this.xinputValue = parseFloat(document.getElementById('lat').getAttribute('value'));
@@ -387,4 +390,4 @@ Camp.io will provide a robust system for users to track campsites they have been
 	      }
 	    }
 ```
-- These ensure the map markers can still be seen even in the case of the map or session reloading, allowing for there to be some persistent marker set up.
+- These ensure the map markers can still be seen even in the case of the map or session reloading, allowing for a user to save data locally on their machine during a browsing session.
